@@ -1,0 +1,72 @@
+[
+  {
+    "id": "pentacles_01_ace", "name": "Ace of Pentacles", "arcana": "minor", "suit": "pentacles", "rank": "Ace",
+    "upright": {"keywords": ["opportunity", "material beginning", "grounded potential"], "text": "A practical opportunity is available in work, resources, health, or the physical world. The Ace of Pentacles favors a modest but real beginning. Plant carefully and give the possibility consistent conditions for growth."},
+    "reversed": {"keywords": ["missed opportunity", "poor foundation", "scarcity thinking"], "text": "A practical opening may be delayed, overlooked, or weakened by inadequate preparation. Check the foundation before investing more. Fear of scarcity can be as distorting as careless optimism."}
+  },
+  {
+    "id": "pentacles_02_two", "name": "Two of Pentacles", "arcana": "minor", "suit": "pentacles", "rank": "Two",
+    "upright": {"keywords": ["adaptation", "priorities", "balancing demands"], "text": "Several practical demands can be managed through flexibility and clear priorities. The Two of Pentacles favors an active balance rather than perfect stillness. Adjust the rhythm before adding another obligation."},
+    "reversed": {"keywords": ["overcommitment", "disorganization", "dropped priority"], "text": "Too many moving parts may be exceeding the system that holds them. Stop treating every demand as equally urgent. Reduce, delegate, or reschedule before imbalance decides for you."}
+  },
+  {
+    "id": "pentacles_03_three", "name": "Three of Pentacles", "arcana": "minor", "suit": "pentacles", "rank": "Three",
+    "upright": {"keywords": ["collaboration", "craft", "shared work"], "text": "Skill develops through practice, feedback, and cooperation with people who bring different strengths. The Three of Pentacles favors work whose quality can be examined. Build something others can meaningfully contribute to."},
+    "reversed": {"keywords": ["poor teamwork", "low standards", "misaligned effort"], "text": "Collaboration may be weakened by unclear roles, uneven effort, or resistance to useful feedback. Define what good work requires and who owns each part before continuing the build."}
+  },
+  {
+    "id": "pentacles_04_four", "name": "Four of Pentacles", "arcana": "minor", "suit": "pentacles", "rank": "Four",
+    "upright": {"keywords": ["security", "control", "conservation"], "text": "Protecting resources can create needed stability, but holding too tightly may turn security into stagnation. The Four of Pentacles asks what must be preserved and what must circulate to remain useful."},
+    "reversed": {"keywords": ["release", "financial fear", "instability"], "text": "Control over resources may be loosening through choice or circumstance. Release what can be shared, but do not confuse freedom with neglect. Rebuild security around realistic needs rather than fear."}
+  },
+  {
+    "id": "pentacles_05_five", "name": "Five of Pentacles", "arcana": "minor", "suit": "pentacles", "rank": "Five",
+    "upright": {"keywords": ["hardship", "exclusion", "material worry"], "text": "Material difficulty or a sense of exclusion may be narrowing what you can see. The Five of Pentacles asks you to seek available support without shame. Hardship is a condition, not a measure of worth."},
+    "reversed": {"keywords": ["recovery", "assistance", "improving conditions"], "text": "Conditions may be beginning to improve through help, changed circumstances, or a willingness to reenter connection. Accept practical support and strengthen the small structures that make recovery durable."}
+  },
+  {
+    "id": "pentacles_06_six", "name": "Six of Pentacles", "arcana": "minor", "suit": "pentacles", "rank": "Six",
+    "upright": {"keywords": ["generosity", "exchange", "material balance"], "text": "Resources are moving between those who can give and those who need support. The Six of Pentacles favors generosity with dignity and clear terms. Notice the power created by both giving and receiving."},
+    "reversed": {"keywords": ["strings attached", "debt", "unequal exchange"], "text": "An offer may carry hidden conditions, or an exchange may reinforce dependence rather than relieve it. Clarify expectations and restore agency. Help that humiliates or controls is not balanced generosity."}
+  },
+  {
+    "id": "pentacles_07_seven", "name": "Seven of Pentacles", "arcana": "minor", "suit": "pentacles", "rank": "Seven",
+    "upright": {"keywords": ["assessment", "patience", "long-term growth"], "text": "Sustained effort has reached a point where progress should be evaluated. The Seven of Pentacles favors patience, but not passive repetition. Measure what is growing and adjust what is not."},
+    "reversed": {"keywords": ["impatience", "poor return", "wasted effort"], "text": "The return may not justify the energy being invested, or impatience may be judging growth too soon. Use evidence to distinguish a slow harvest from a field that needs a different approach."}
+  },
+  {
+    "id": "pentacles_08_eight", "name": "Eight of Pentacles", "arcana": "minor", "suit": "pentacles", "rank": "Eight",
+    "upright": {"keywords": ["practice", "mastery", "dedicated work"], "text": "Improvement comes through repetition undertaken with attention. The Eight of Pentacles favors apprenticeship, craft, and willingness to revise. Let each attempt teach the next rather than merely increasing the count."},
+    "reversed": {"keywords": ["perfectionism", "poor workmanship", "empty repetition"], "text": "Work may be repeated without learning, or perfectionism may prevent completion. Return to the purpose of the craft. Quality grows through attentive correction, not endless punishment of every flaw."}
+  },
+  {
+    "id": "pentacles_09_nine", "name": "Nine of Pentacles", "arcana": "minor", "suit": "pentacles", "rank": "Nine",
+    "upright": {"keywords": ["independence", "earned comfort", "self-sufficiency"], "text": "Patient effort has created a measure of independence and material ease. The Nine of Pentacles invites enjoyment of what has been cultivated. Receive comfort without forgetting the relationships and conditions that supported it."},
+    "reversed": {"keywords": ["dependence", "overwork", "unstable luxury"], "text": "The appearance of independence may rest on exhaustion, debt, or support that has not been acknowledged. Reassess what true sufficiency requires. Comfort becomes steadier when its costs are visible."}
+  },
+  {
+    "id": "pentacles_10_ten", "name": "Ten of Pentacles", "arcana": "minor", "suit": "pentacles", "rank": "Ten",
+    "upright": {"keywords": ["legacy", "lasting security", "shared resources"], "text": "Resources, knowledge, or stability can extend beyond one individual moment. The Ten of Pentacles favors long-term stewardship and structures that support others. Consider what your choices are building for those who follow."},
+    "reversed": {"keywords": ["unstable legacy", "family conflict", "short-term thinking"], "text": "A structure meant to provide security may be strained by competing values or neglected foundations. Examine what is being preserved and for whom. Tradition without maintenance cannot guarantee stability."}
+  },
+  {
+    "id": "pentacles_11_page", "name": "Page of Pentacles", "arcana": "minor", "suit": "pentacles", "rank": "Page",
+    "upright": {"keywords": ["study", "practical ambition", "new skill"], "text": "A practical subject, skill, or opportunity deserves careful beginner's attention. The Page of Pentacles favors study, steady curiosity, and goals translated into repeatable steps. Start where progress can be measured."},
+    "reversed": {"keywords": ["procrastination", "poor follow-through", "unrealistic goal"], "text": "A useful goal may remain theoretical because the first routine has not been established. Reduce the scale until action becomes possible. Consistency will teach more than another elaborate plan."}
+  },
+  {
+    "id": "pentacles_12_knight", "name": "Knight of Pentacles", "arcana": "minor", "suit": "pentacles", "rank": "Knight",
+    "upright": {"keywords": ["reliability", "routine", "patient progress"], "text": "Steady work and dependable habits are more valuable now than dramatic speed. The Knight of Pentacles favors thoroughness, follow-through, and respect for ordinary maintenance. Continue, but remain awake to what the routine teaches."},
+    "reversed": {"keywords": ["stagnation", "boredom", "rigid routine"], "text": "Consistency may have become mechanical or resistant to necessary change. A routine should support the goal rather than replace it. Adjust one habit and restore conscious purpose to the work."}
+  },
+  {
+    "id": "pentacles_13_queen", "name": "Queen of Pentacles", "arcana": "minor", "suit": "pentacles", "rank": "Queen",
+    "upright": {"keywords": ["resourcefulness", "practical care", "grounded abundance"], "text": "Care becomes tangible through attention to bodies, homes, resources, and daily needs. The Queen of Pentacles favors practical generosity and an abundance that is tended rather than merely displayed."},
+    "reversed": {"keywords": ["self-neglect", "material anxiety", "overextension"], "text": "Practical care for others may be depleting your own foundation, or material worry may crowd out every softer need. Restore the routines and boundaries that allow generosity to remain sustainable."}
+  },
+  {
+    "id": "pentacles_14_king", "name": "King of Pentacles", "arcana": "minor", "suit": "pentacles", "rank": "King",
+    "upright": {"keywords": ["stewardship", "prosperity", "practical leadership"], "text": "Material authority is best expressed through stewardship, reliability, and long-term judgment. The King of Pentacles favors building value that endures and using resources in ways that create genuine stability."},
+    "reversed": {"keywords": ["greed", "stubbornness", "material control"], "text": "Security may be pursued through accumulation, status, or control beyond what stability actually requires. Examine whether resources are serving life or replacing it. Stewardship includes circulation as well as possession."}
+  }
+]

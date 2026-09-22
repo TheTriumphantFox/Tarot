@@ -1,0 +1,2 @@
+"""Signal Tarot application package."""
+

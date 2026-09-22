@@ -1,0 +1,332 @@
+[
+  {
+    "id": "major_00_the_fool",
+    "name": "The Fool",
+    "arcana": "major",
+    "suit": null,
+    "rank": "0",
+    "upright": {
+      "keywords": ["beginnings", "trust", "possibility"],
+      "text": "A beginning is opening before you without a complete map. The Fool favors curiosity, movement, and enough trust to take the first honest step. Keep your senses awake, but do not demand certainty before allowing yourself to begin."
+    },
+    "reversed": {
+      "keywords": ["hesitation", "recklessness", "unreadiness"],
+      "text": "The impulse to begin may be tangled with fear or poor preparation. Notice whether you are refusing a worthwhile risk or rushing past an obvious warning. Freedom becomes useful when it travels with awareness rather than denial."
+    }
+  },
+  {
+    "id": "major_01_the_magician",
+    "name": "The Magician",
+    "arcana": "major",
+    "suit": null,
+    "rank": "1",
+    "upright": {
+      "keywords": ["will", "skill", "manifestation"],
+      "text": "The necessary tools are closer than they appear. The Magician asks you to unite intention with practical skill and make a deliberate move. Clear focus matters now: scattered effort will accomplish less than one action chosen and carried through."
+    },
+    "reversed": {
+      "keywords": ["misdirection", "unused ability", "manipulation"],
+      "text": "Ability is present, but it may be unfocused, withheld, or used to control appearances. Examine the difference between persuasion and manipulation, and between preparation and avoidance. Bring your stated intention back into agreement with your actions."
+    }
+  },
+  {
+    "id": "major_02_the_high_priestess",
+    "name": "The High Priestess",
+    "arcana": "major",
+    "suit": null,
+    "rank": "2",
+    "upright": {
+      "keywords": ["intuition", "stillness", "hidden knowledge"],
+      "text": "Not everything needs to be forced into speech or immediate action. The High Priestess invites patient attention to dreams, patterns, and the knowledge beneath your first explanation. Allow silence to reveal what urgency has been covering."
+    },
+    "reversed": {
+      "keywords": ["disconnection", "secrecy", "ignored intuition"],
+      "text": "A quiet inner warning may be getting lost beneath noise, secrecy, or another person's certainty. Pause before seeking one more outside answer. What you already sense deserves examination, even if it is inconvenient or incomplete."
+    }
+  },
+  {
+    "id": "major_03_the_empress",
+    "name": "The Empress",
+    "arcana": "major",
+    "suit": null,
+    "rank": "3",
+    "upright": {
+      "keywords": ["nurture", "abundance", "creation"],
+      "text": "Growth is supported through care, patience, and attention to the conditions around it. The Empress favors making, tending, and receiving pleasure without apology. Give nourishment to what you genuinely want to see become alive."
+    },
+    "reversed": {
+      "keywords": ["depletion", "overgiving", "blocked creation"],
+      "text": "Care may be flowing outward while your own reserves go unattended. The Empress reversed asks where generosity has become depletion or where perfection has stopped creation. Restore the conditions that let you make and receive freely."
+    }
+  },
+  {
+    "id": "major_04_the_emperor",
+    "name": "The Emperor",
+    "arcana": "major",
+    "suit": null,
+    "rank": "4",
+    "upright": {
+      "keywords": ["structure", "authority", "stability"],
+      "text": "A clear boundary or durable structure can turn intention into something dependable. The Emperor favors responsibility, planning, and calm leadership. Establish what is yours to govern, then act consistently rather than trying to control everything."
+    },
+    "reversed": {
+      "keywords": ["rigidity", "domination", "unstable control"],
+      "text": "Structure may have hardened into control, or authority may be present without responsibility. Consider where inflexibility is creating the disorder it claims to prevent. Real stability can adapt without surrendering its essential boundary."
+    }
+  },
+  {
+    "id": "major_05_the_hierophant",
+    "name": "The Hierophant",
+    "arcana": "major",
+    "suit": null,
+    "rank": "5",
+    "upright": {
+      "keywords": ["tradition", "teaching", "shared values"],
+      "text": "A tradition, teacher, or established practice may offer useful form for what you are learning. Receive its wisdom without surrendering discernment. The question is not merely what others believe, but which values you are willing to embody."
+    },
+    "reversed": {
+      "keywords": ["conformity", "questioning", "private belief"],
+      "text": "An inherited rule may no longer fit the life you are actually living. Examine it before either obeying or rejecting it automatically. A more personal belief can emerge when rebellion becomes thoughtful rather than purely reactive."
+    }
+  },
+  {
+    "id": "major_06_the_lovers",
+    "name": "The Lovers",
+    "arcana": "major",
+    "suit": null,
+    "rank": "6",
+    "upright": {
+      "keywords": ["choice", "union", "alignment"],
+      "text": "A meaningful choice asks for agreement between desire, values, and action. The Lovers can describe intimacy, but its deeper question is alignment: can you meet another person or path honestly without abandoning yourself?"
+    },
+    "reversed": {
+      "keywords": ["disharmony", "divided values", "avoidance"],
+      "text": "A bond or decision may be strained by values that have drifted apart. Avoid smoothing over the difference merely to preserve appearances. Honest recognition of the divide is the first chance to repair it or choose differently."
+    }
+  },
+  {
+    "id": "major_07_the_chariot",
+    "name": "The Chariot",
+    "arcana": "major",
+    "suit": null,
+    "rank": "7",
+    "upright": {
+      "keywords": ["direction", "resolve", "momentum"],
+      "text": "Conflicting forces can be directed when purpose is clear. The Chariot favors disciplined movement and a firm decision about where you are going. Progress comes from guiding your energy, not from pretending the tension has disappeared."
+    },
+    "reversed": {
+      "keywords": ["loss of direction", "force", "scattered effort"],
+      "text": "Momentum may be turning into strain because the destination is unclear. Pushing harder will not unite forces aimed in opposite directions. Stop long enough to choose a course before speed carries you somewhere unintended."
+    }
+  },
+  {
+    "id": "major_08_strength",
+    "name": "Strength",
+    "arcana": "major",
+    "suit": null,
+    "rank": "8",
+    "upright": {
+      "keywords": ["courage", "patience", "gentle power"],
+      "text": "The power available now is steady rather than forceful. Strength asks for courage that can remain present with fear, anger, or vulnerability without being ruled by them. A patient hand may accomplish what pressure cannot."
+    },
+    "reversed": {
+      "keywords": ["self-doubt", "suppression", "raw emotion"],
+      "text": "Confidence may be weakened by harsh self-judgment or by feelings held down too long. Do not confuse gentleness with weakness. Meet the unsettled part directly and offer it direction instead of either indulging or punishing it."
+    }
+  },
+  {
+    "id": "major_09_the_hermit",
+    "name": "The Hermit",
+    "arcana": "major",
+    "suit": null,
+    "rank": "9",
+    "upright": {
+      "keywords": ["solitude", "reflection", "inner guidance"],
+      "text": "Deliberate solitude may help you hear what ordinary noise has obscured. The Hermit favors patient reflection, careful searching, and guidance earned through experience. Withdraw with a purpose, and carry the light back when you return."
+    },
+    "reversed": {
+      "keywords": ["isolation", "avoidance", "withdrawal"],
+      "text": "Isolation may have stopped being restorative and begun preventing a needed connection. Consider whether reflection has become avoidance, or whether you are waiting to feel completely certain before allowing yourself to rejoin the world."
+    }
+  },
+  {
+    "id": "major_10_wheel_of_fortune",
+    "name": "Wheel of Fortune",
+    "arcana": "major",
+    "suit": null,
+    "rank": "10",
+    "upright": {
+      "keywords": ["change", "cycles", "turning point"],
+      "text": "Conditions are changing, and a familiar cycle may be reaching its turning point. The Wheel favors responsiveness rather than total control. Notice what is arriving, what is passing, and where a timely choice can meet the movement."
+    },
+    "reversed": {
+      "keywords": ["resistance", "repeating cycle", "delay"],
+      "text": "A cycle may be repeating because its lesson or pattern has not been fully recognized. Delay does not necessarily mean permanent failure. Identify what remains within your influence, and stop spending strength on what is already turning away."
+    }
+  },
+  {
+    "id": "major_11_justice",
+    "name": "Justice",
+    "arcana": "major",
+    "suit": null,
+    "rank": "11",
+    "upright": {
+      "keywords": ["truth", "accountability", "balance"],
+      "text": "Clarity comes from looking at actions and consequences without convenient distortion. Justice asks for honesty, proportion, and responsibility. Make the decision you could defend after emotion settles and all relevant voices have been heard."
+    },
+    "reversed": {
+      "keywords": ["denial", "unfairness", "avoided consequence"],
+      "text": "Something may be out of balance because responsibility is being displaced or an uncomfortable fact is being minimized. Before demanding a verdict, examine the standard being used and whether it is applied equally to everyone involved."
+    }
+  },
+  {
+    "id": "major_12_the_hanged_man",
+    "name": "The Hanged Man",
+    "arcana": "major",
+    "suit": null,
+    "rank": "12",
+    "upright": {
+      "keywords": ["suspension", "surrender", "new perspective"],
+      "text": "Forward motion may require a willing pause. The Hanged Man invites you to release the angle from which the problem has always been viewed. What looks like delay can become a useful suspension when it opens another perspective."
+    },
+    "reversed": {
+      "keywords": ["stalling", "martyrdom", "refusal to release"],
+      "text": "A pause may have become indefinite because surrender feels like defeat. Notice whether sacrifice is serving a real purpose or preserving an identity built around waiting. Movement begins when you release what no longer changes the situation."
+    }
+  },
+  {
+    "id": "major_13_death",
+    "name": "Death",
+    "arcana": "major",
+    "suit": null,
+    "rank": "13",
+    "upright": {
+      "keywords": ["ending", "transition", "release"],
+      "text": "A form, role, or chapter has reached an ending that makes transformation possible. Death rarely asks for literal prediction; it asks what must be released so life can reorganize. Grieve honestly, then leave room for what follows."
+    },
+    "reversed": {
+      "keywords": ["resistance", "stagnation", "unfinished ending"],
+      "text": "An ending may be prolonged because part of you is still bargaining with what has already changed. Resistance can preserve familiarity, but it cannot restore the former shape. Name what is over and choose how to carry its meaning forward."
+    }
+  },
+  {
+    "id": "major_14_temperance",
+    "name": "Temperance",
+    "arcana": "major",
+    "suit": null,
+    "rank": "14",
+    "upright": {
+      "keywords": ["integration", "moderation", "healing"],
+      "text": "Different elements can be combined without either one disappearing. Temperance favors measured adjustment, patient healing, and a sustainable middle path. Small corrections made consistently may be more powerful than one dramatic gesture."
+    },
+    "reversed": {
+      "keywords": ["excess", "imbalance", "poor mixture"],
+      "text": "Something is being combined in a proportion that cannot hold. Look for excess, depletion, or attempts to force harmony before the ingredients are ready. Rebalance through specific changes rather than vague promises of moderation."
+    }
+  },
+  {
+    "id": "major_15_the_devil",
+    "name": "The Devil",
+    "arcana": "major",
+    "suit": null,
+    "rank": "15",
+    "upright": {
+      "keywords": ["attachment", "compulsion", "shadow"],
+      "text": "An attachment may be exercising more power because it remains unnamed. The Devil reveals bargains made with fear, appetite, shame, or convenience. Look directly at the chain; recognizing how it is fastened is the beginning of choice."
+    },
+    "reversed": {
+      "keywords": ["release", "exposure", "reclaimed choice"],
+      "text": "A binding pattern is becoming visible enough to challenge. Release may be uneven, but awareness has already weakened the illusion that no choice exists. Remove one source of secrecy or reinforcement and let that practical act begin the change."
+    }
+  },
+  {
+    "id": "major_16_the_tower",
+    "name": "The Tower",
+    "arcana": "major",
+    "suit": null,
+    "rank": "16",
+    "upright": {
+      "keywords": ["disruption", "revelation", "collapse"],
+      "text": "A structure built on an unstable truth may no longer be able to hold its shape. The Tower is disruptive, but it also exposes what could not be repaired through appearances alone. Protect what matters and let false certainty fall."
+    },
+    "reversed": {
+      "keywords": ["avoided upheaval", "internal rupture", "delayed truth"],
+      "text": "You may sense a necessary disruption and be spending great energy postponing it. Not every collapse must be dramatic; some can become deliberate dismantling. Address the unstable part while you still have room to choose the manner of change."
+    }
+  },
+  {
+    "id": "major_17_the_star",
+    "name": "The Star",
+    "arcana": "major",
+    "suit": null,
+    "rank": "17",
+    "upright": {
+      "keywords": ["hope", "renewal", "openness"],
+      "text": "After difficulty, a quieter form of hope is becoming available. The Star favors honesty, replenishment, and trust rebuilt through small evidence. Let yourself imagine a future without demanding that hope guarantee every detail."
+    },
+    "reversed": {
+      "keywords": ["discouragement", "disconnection", "dimmed hope"],
+      "text": "Hope may feel inaccessible because exhaustion has narrowed what you can see. Do not require yourself to feel inspired. Begin with one source of replenishment or one credible possibility, and allow confidence to return through contact rather than command."
+    }
+  },
+  {
+    "id": "major_18_the_moon",
+    "name": "The Moon",
+    "arcana": "major",
+    "suit": null,
+    "rank": "18",
+    "upright": {
+      "keywords": ["uncertainty", "dreams", "hidden influence"],
+      "text": "The path is visible only in fragments, and instinct may be speaking through image, fear, or dream. The Moon advises slow movement and careful observation. Treat impressions as information to examine, not facts that require immediate obedience."
+    },
+    "reversed": {
+      "keywords": ["clarity emerging", "misinterpretation", "released fear"],
+      "text": "Confusion may be beginning to thin, although some distorted impressions remain. Test what you feared against what is actually present. Clarity grows when intuition and evidence are allowed to correct one another."
+    }
+  },
+  {
+    "id": "major_19_the_sun",
+    "name": "The Sun",
+    "arcana": "major",
+    "suit": null,
+    "rank": "19",
+    "upright": {
+      "keywords": ["vitality", "clarity", "joy"],
+      "text": "Something can be seen and enjoyed without being made more complicated. The Sun favors openness, vitality, and the confidence that follows clear understanding. Share the warmth available now and let success be acknowledged rather than immediately discounted."
+    },
+    "reversed": {
+      "keywords": ["muted joy", "overconfidence", "delayed clarity"],
+      "text": "Light is present, but it may be obscured by unrealistic expectations or an inability to receive what is good. Adjust the scale of the celebration rather than declaring it false. A smaller, honest success still deserves recognition."
+    }
+  },
+  {
+    "id": "major_20_judgement",
+    "name": "Judgement",
+    "arcana": "major",
+    "suit": null,
+    "rank": "20",
+    "upright": {
+      "keywords": ["reckoning", "awakening", "calling"],
+      "text": "A clear assessment of the past can become a summons rather than a sentence. Judgement asks you to recognize what has changed and respond from that knowledge. Accept responsibility, release the exhausted version of the story, and answer what calls now."
+    },
+    "reversed": {
+      "keywords": ["self-condemnation", "avoidance", "unanswered call"],
+      "text": "Harsh self-judgment or fear of being judged may be preventing an honest reckoning. Accountability does not require permanent condemnation. Hear what the past is asking you to change, then let action speak more loudly than repeated punishment."
+    }
+  },
+  {
+    "id": "major_21_the_world",
+    "name": "The World",
+    "arcana": "major",
+    "suit": null,
+    "rank": "21",
+    "upright": {
+      "keywords": ["completion", "integration", "wholeness"],
+      "text": "A cycle is reaching genuine completion, allowing its many parts to be understood as a whole. The World favors acknowledgment, integration, and arrival. Mark what has been completed before immediately turning toward the next horizon."
+    },
+    "reversed": {
+      "keywords": ["incompletion", "loose ends", "delayed arrival"],
+      "text": "The end is near, but one unfinished element continues to claim attention. Identify whether it needs real completion or simply your permission to be imperfect. Closure may depend on a final practical act rather than another round of reflection."
+    }
+  }
+]

@@ -1,0 +1,72 @@
+[
+  {
+    "id": "wands_01_ace", "name": "Ace of Wands", "arcana": "minor", "suit": "wands", "rank": "Ace",
+    "upright": {"keywords": ["inspiration", "initiative", "creative spark"], "text": "A fresh current of energy is asking for expression. The Ace of Wands favors beginning while enthusiasm is alive, even if the complete plan has not yet formed. Give the spark a practical first action."},
+    "reversed": {"keywords": ["delay", "blocked energy", "false start"], "text": "The impulse is present, but its direction or timing may be unclear. Avoid forcing excitement that is not ready. Remove one obstruction, refine the intention, and see whether genuine energy returns."}
+  },
+  {
+    "id": "wands_02_two", "name": "Two of Wands", "arcana": "minor", "suit": "wands", "rank": "Two",
+    "upright": {"keywords": ["planning", "choice", "expanded horizon"], "text": "A wider possibility can now be considered from a position of relative stability. The Two of Wands asks you to choose a direction and accept that planning becomes meaningful only when it eventually leads beyond the familiar."},
+    "reversed": {"keywords": ["fear of change", "poor planning", "narrow vision"], "text": "The safer option may be exerting too much influence, or a plan may lack the detail needed to travel. Name the actual risk, then distinguish reasonable preparation from a refusal to leave familiar ground."}
+  },
+  {
+    "id": "wands_03_three", "name": "Three of Wands", "arcana": "minor", "suit": "wands", "rank": "Three",
+    "upright": {"keywords": ["expansion", "foresight", "progress"], "text": "Earlier effort is beginning to create a larger field of possibility. The Three of Wands favors long-range thinking, useful collaboration, and confidence that can wait for results without becoming passive."},
+    "reversed": {"keywords": ["setback", "limited growth", "scattered plans"], "text": "Expansion may be slowed by weak coordination, unrealistic expectations, or a horizon defined too narrowly. Review what the first effort actually taught before committing more energy to the same approach."}
+  },
+  {
+    "id": "wands_04_four", "name": "Four of Wands", "arcana": "minor", "suit": "wands", "rank": "Four",
+    "upright": {"keywords": ["celebration", "belonging", "stable foundation"], "text": "A foundation has become strong enough to support joy, gathering, or recognition. The Four of Wands invites you to mark progress with others and appreciate the place or community that helps effort become sustainable."},
+    "reversed": {"keywords": ["instability", "private milestone", "strained belonging"], "text": "A celebration may feel incomplete, or tension beneath the surface may make belonging uncertain. Honor what has been achieved without ignoring the repair still needed in the foundation or community."}
+  },
+  {
+    "id": "wands_05_five", "name": "Five of Wands", "arcana": "minor", "suit": "wands", "rank": "Five",
+    "upright": {"keywords": ["competition", "friction", "testing"], "text": "Different ambitions are colliding, creating noise as well as useful pressure. The Five of Wands asks whether conflict is sharpening the work or merely consuming attention. Establish a fair arena and a shared objective."},
+    "reversed": {"keywords": ["avoided conflict", "inner tension", "resolution"], "text": "Open friction may be subsiding, but the underlying disagreement still needs a name. Peace created by avoidance remains fragile. Resolve the essential difference without continuing every unnecessary contest."}
+  },
+  {
+    "id": "wands_06_six", "name": "Six of Wands", "arcana": "minor", "suit": "wands", "rank": "Six",
+    "upright": {"keywords": ["recognition", "victory", "confidence"], "text": "Effort is receiving visible acknowledgment. The Six of Wands supports confidence and leadership, while reminding you that recognition is a moment to share credit and strengthen purpose rather than depend entirely on applause."},
+    "reversed": {"keywords": ["self-doubt", "unrecognized effort", "empty praise"], "text": "Recognition may be absent, delayed, or less satisfying than expected. Separate the real value of the accomplishment from its public response. Confidence rebuilt internally will be steadier than either praise or criticism."}
+  },
+  {
+    "id": "wands_07_seven", "name": "Seven of Wands", "arcana": "minor", "suit": "wands", "rank": "Seven",
+    "upright": {"keywords": ["defense", "conviction", "perseverance"], "text": "A position worth holding may now require effort and clear boundaries. The Seven of Wands favors standing firm without treating every question as an attack. Protect the essential ground and release the rest."},
+    "reversed": {"keywords": ["overwhelm", "defensiveness", "giving ground"], "text": "Constant defense may be exhausting your ability to judge what truly matters. Some pressure requires resistance; some requires a new position. Stop fighting on every front and choose the boundary that deserves your strength."}
+  },
+  {
+    "id": "wands_08_eight", "name": "Eight of Wands", "arcana": "minor", "suit": "wands", "rank": "Eight",
+    "upright": {"keywords": ["momentum", "message", "rapid movement"], "text": "Events are accelerating and previously delayed energy can travel quickly. The Eight of Wands favors direct communication and timely action. Move with the opening, but keep the destination visible as speed increases."},
+    "reversed": {"keywords": ["delay", "miscommunication", "rushed action"], "text": "Speed may be producing crossed messages or movement without coordination. Pause long enough to confirm the direction and the recipient. A short correction now can prevent a much longer detour."}
+  },
+  {
+    "id": "wands_09_nine", "name": "Nine of Wands", "arcana": "minor", "suit": "wands", "rank": "Nine",
+    "upright": {"keywords": ["resilience", "boundary", "last effort"], "text": "Experience has made you cautious, but it has also prepared you to continue. The Nine of Wands honors endurance while asking for intelligent boundaries. Guard the work without assuming every approach carries the old danger."},
+    "reversed": {"keywords": ["exhaustion", "paranoia", "weakened boundary"], "text": "Long vigilance may have become depletion or expectation of another injury. Rest is not surrender. Reassess which defenses still protect you and which now keep support, information, or recovery outside."}
+  },
+  {
+    "id": "wands_10_ten", "name": "Ten of Wands", "arcana": "minor", "suit": "wands", "rank": "Ten",
+    "upright": {"keywords": ["burden", "responsibility", "completion"], "text": "A goal is near, but too much weight may have accumulated around it. The Ten of Wands asks you to distinguish necessary responsibility from burdens accepted through habit, pride, or difficulty asking for help."},
+    "reversed": {"keywords": ["release", "collapse", "delegation"], "text": "The load can no longer be carried in the same way. Release may come through delegation, simplification, or an involuntary stop. Put down what was never truly yours before strength is spent completely."}
+  },
+  {
+    "id": "wands_11_page", "name": "Page of Wands", "arcana": "minor", "suit": "wands", "rank": "Page",
+    "upright": {"keywords": ["discovery", "enthusiasm", "new message"], "text": "Curiosity is bringing news, an experiment, or an unfamiliar direction. The Page of Wands encourages exploration without requiring instant mastery. Follow what feels alive and learn through contact rather than speculation."},
+    "reversed": {"keywords": ["restlessness", "immaturity", "unfinished idea"], "text": "Excitement may be moving from idea to idea without remaining long enough to learn. Choose one experiment small enough to finish. Experience will clarify whether the inspiration is genuine or merely distracting."}
+  },
+  {
+    "id": "wands_12_knight", "name": "Knight of Wands", "arcana": "minor", "suit": "wands", "rank": "Knight",
+    "upright": {"keywords": ["adventure", "bold pursuit", "charisma"], "text": "Energy wants movement, challenge, and a destination worthy of enthusiasm. The Knight of Wands favors courageous pursuit, provided passion remains answerable to consequences and does not abandon everything once novelty fades."},
+    "reversed": {"keywords": ["impulsiveness", "anger", "unstable pursuit"], "text": "Action may be outrunning judgment, turning confidence into volatility. Slow the first reaction and ask what must remain after the excitement passes. Direction matters more than dramatic acceleration."}
+  },
+  {
+    "id": "wands_13_queen", "name": "Queen of Wands", "arcana": "minor", "suit": "wands", "rank": "Queen",
+    "upright": {"keywords": ["confidence", "warmth", "creative authority"], "text": "Visible confidence can make room for both personal expression and the courage of others. The Queen of Wands favors generous leadership, creative independence, and comfort with being seen as you are."},
+    "reversed": {"keywords": ["jealousy", "insecurity", "diminished confidence"], "text": "Comparison or hidden insecurity may be distorting an otherwise powerful presence. Return attention to your own source of vitality. Confidence restored through practice needs less reassurance and creates less competition."}
+  },
+  {
+    "id": "wands_14_king", "name": "King of Wands", "arcana": "minor", "suit": "wands", "rank": "King",
+    "upright": {"keywords": ["vision", "leadership", "enterprise"], "text": "A broad vision now needs leadership capable of inspiring action without controlling every detail. The King of Wands favors initiative, delegation, and decisions guided by purpose larger than personal recognition."},
+    "reversed": {"keywords": ["arrogance", "domination", "unfocused vision"], "text": "Vision may be serving ego, or strong direction may have become refusal to listen. Leadership loses power when others become props. Reconnect authority with accountability and make space for informed challenge."}
+  }
+]

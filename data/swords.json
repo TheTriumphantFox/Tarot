@@ -1,0 +1,72 @@
+[
+  {
+    "id": "swords_01_ace", "name": "Ace of Swords", "arcana": "minor", "suit": "swords", "rank": "Ace",
+    "upright": {"keywords": ["clarity", "truth", "decisive thought"], "text": "A clear idea or necessary truth can cut through confusion. The Ace of Swords favors direct language, intellectual honesty, and a decision grounded in what is actually known rather than what is merely comfortable."},
+    "reversed": {"keywords": ["confusion", "misinformation", "misused intellect"], "text": "Thought may be clouded by incomplete information, hidden assumptions, or language used to obscure rather than reveal. Delay the verdict until terms are defined and the evidence has been checked."}
+  },
+  {
+    "id": "swords_02_two", "name": "Two of Swords", "arcana": "minor", "suit": "swords", "rank": "Two",
+    "upright": {"keywords": ["stalemate", "difficult choice", "guarded peace"], "text": "A decision is being held in suspension because each option carries a cost. The Two of Swords asks for enough quiet to recognize the real conflict, followed by a choice that accepts imperfect information."},
+    "reversed": {"keywords": ["indecision", "overload", "truth emerging"], "text": "Avoidance may no longer be keeping the conflict contained. Too much information or fear of consequence can paralyze judgment. Identify the deciding value and allow it to reduce the noise."}
+  },
+  {
+    "id": "swords_03_three", "name": "Three of Swords", "arcana": "minor", "suit": "swords", "rank": "Three",
+    "upright": {"keywords": ["heartbreak", "painful truth", "separation"], "text": "A painful truth needs acknowledgment rather than immediate transformation into a lesson. The Three of Swords permits grief, disappointment, and clear recognition. Healing begins after the wound is named accurately."},
+    "reversed": {"keywords": ["recovery", "lingering grief", "release"], "text": "Pain may be loosening, though its echo still affects the present. Recovery does not require forgetting. Let the experience become integrated knowledge instead of a blade repeatedly turned inward."}
+  },
+  {
+    "id": "swords_04_four", "name": "Four of Swords", "arcana": "minor", "suit": "swords", "rank": "Four",
+    "upright": {"keywords": ["rest", "retreat", "mental recovery"], "text": "The mind needs quiet before it can make another useful decision. The Four of Swords favors deliberate rest, reduced input, and recovery without guilt. Stillness is part of the work, not its opposite."},
+    "reversed": {"keywords": ["restlessness", "burnout", "return to activity"], "text": "Rest may have been delayed too long, or withdrawal may now be preventing a necessary return. Notice whether the body asks for recovery or the mind asks for gentle reengagement. Respond to the actual need."}
+  },
+  {
+    "id": "swords_05_five", "name": "Five of Swords", "arcana": "minor", "suit": "swords", "rank": "Five",
+    "upright": {"keywords": ["conflict", "hollow victory", "self-interest"], "text": "A contest may be winnable in a way that damages the larger relationship or purpose. The Five of Swords asks what victory will cost after the argument ends. Choose which conflict deserves continuation."},
+    "reversed": {"keywords": ["reconciliation", "resentment", "making amends"], "text": "The desire to end conflict is present, but unresolved resentment may complicate repair. Reconciliation requires more than silence. Acknowledge the harm, clarify the boundary, and decide what form of peace is honest."}
+  },
+  {
+    "id": "swords_06_six", "name": "Six of Swords", "arcana": "minor", "suit": "swords", "rank": "Six",
+    "upright": {"keywords": ["transition", "departure", "gradual healing"], "text": "Movement away from difficulty is possible, even if the destination is not yet joyful. The Six of Swords favors a measured transition and the acceptance that some memories travel with you while their weight changes."},
+    "reversed": {"keywords": ["stuck transition", "unfinished business", "return"], "text": "A crossing may be delayed by unfinished obligations or reluctance to release the familiar pain. Identify what truly must be resolved before leaving and what is simply asking for impossible certainty."}
+  },
+  {
+    "id": "swords_07_seven", "name": "Seven of Swords", "arcana": "minor", "suit": "swords", "rank": "Seven",
+    "upright": {"keywords": ["strategy", "secrecy", "independence"], "text": "A situation may require discretion and intelligent strategy, but secrecy carries its own consequences. The Seven of Swords asks whether independence is protecting necessary space or avoiding an honest reckoning."},
+    "reversed": {"keywords": ["exposure", "self-deception", "confession"], "text": "A hidden action, motive, or rationalization may be becoming difficult to maintain. Exposure can be chosen before it is forced. Tell the truth first where it changes your own behavior."}
+  },
+  {
+    "id": "swords_08_eight", "name": "Eight of Swords", "arcana": "minor", "suit": "swords", "rank": "Eight",
+    "upright": {"keywords": ["restriction", "fear", "limited perspective"], "text": "The available choices may feel narrower than they actually are because fear is defining the frame. The Eight of Swords asks you to test one assumed limitation and seek another perspective before declaring there is no path."},
+    "reversed": {"keywords": ["release", "new perspective", "reclaimed agency"], "text": "A restrictive belief is beginning to lose authority. Freedom may arrive first as a small choice rather than a complete escape. Use the opening to gather evidence that another response is possible."}
+  },
+  {
+    "id": "swords_09_nine", "name": "Nine of Swords", "arcana": "minor", "suit": "swords", "rank": "Nine",
+    "upright": {"keywords": ["anxiety", "night thoughts", "guilt"], "text": "Fear may be multiplying in isolation, especially when the mind has no new evidence to process. The Nine of Swords asks for compassionate reality-testing, rest, and support rather than another private trial."},
+    "reversed": {"keywords": ["relief", "deepening anxiety", "facing fear"], "text": "Anxiety may be starting to release, or it may have become too heavy to hide. In either case, bring the fear into daylight and seek appropriate support. Secrecy gives it unnecessary size."}
+  },
+  {
+    "id": "swords_10_ten", "name": "Ten of Swords", "arcana": "minor", "suit": "swords", "rank": "Ten",
+    "upright": {"keywords": ["painful ending", "finality", "rock bottom"], "text": "A difficult ending has reached the point where denial cannot improve it. The Ten of Swords is severe but final: stop reenacting the conclusion and begin orienting toward what the new morning makes possible."},
+    "reversed": {"keywords": ["survival", "resisting an ending", "slow recovery"], "text": "The worst may be passing, though recovery remains tender, or an ending may still be resisted after its truth is clear. Protect the healing process from repeated return to the same wound."}
+  },
+  {
+    "id": "swords_11_page", "name": "Page of Swords", "arcana": "minor", "suit": "swords", "rank": "Page",
+    "upright": {"keywords": ["curiosity", "vigilance", "new idea"], "text": "Questions, observation, and a lively mind are opening new information. The Page of Swords favors research and honest inquiry. Stay curious without treating suspicion as proof or speed as understanding."},
+    "reversed": {"keywords": ["gossip", "cynicism", "scattered thought"], "text": "Information may be circulating without context or responsibility. Resist the thrill of a quick conclusion. Verify the source, examine the motive, and decide whether the message deserves further movement."}
+  },
+  {
+    "id": "swords_12_knight", "name": "Knight of Swords", "arcana": "minor", "suit": "swords", "rank": "Knight",
+    "upright": {"keywords": ["direct action", "ambition", "intellectual force"], "text": "A conclusion wants swift action and direct expression. The Knight of Swords favors courage and momentum, but asks you to keep listening while advancing. Accuracy matters as much as conviction."},
+    "reversed": {"keywords": ["aggression", "recklessness", "harsh words"], "text": "Certainty may be moving faster than understanding, turning argument into injury. Slow the charge and examine what has been excluded. A forceful truth delivered carelessly can become another distortion."}
+  },
+  {
+    "id": "swords_13_queen", "name": "Queen of Swords", "arcana": "minor", "suit": "swords", "rank": "Queen",
+    "upright": {"keywords": ["discernment", "independence", "clear boundary"], "text": "Experience has sharpened the ability to recognize both truth and pretense. The Queen of Swords favors direct communication, independent judgment, and boundaries made clear without unnecessary cruelty."},
+    "reversed": {"keywords": ["bitterness", "cold judgment", "rigidity"], "text": "Discernment may have hardened into suspicion or a boundary into punishment. Pain can explain sharpness without making every conclusion accurate. Allow new evidence to reach the judgment."}
+  },
+  {
+    "id": "swords_14_king", "name": "King of Swords", "arcana": "minor", "suit": "swords", "rank": "King",
+    "upright": {"keywords": ["reason", "authority", "ethical judgment"], "text": "A decision calls for disciplined thought, fair standards, and authority answerable to principle. The King of Swords favors clear reasoning and language that makes expectations understandable to everyone affected."},
+    "reversed": {"keywords": ["misused authority", "cruelty", "intellectual control"], "text": "Reason may be used to dominate, rationalize, or conceal a conclusion already chosen. Examine who benefits from the standard and who can challenge it. Intelligence without accountability becomes manipulation."}
+  }
+]

@@ -1,0 +1,72 @@
+[
+  {
+    "id": "cups_01_ace", "name": "Ace of Cups", "arcana": "minor", "suit": "cups", "rank": "Ace",
+    "upright": {"keywords": ["emotional opening", "compassion", "renewal"], "text": "A new emotional current is available through affection, creativity, or spiritual receptivity. The Ace of Cups invites you to receive before trying to define everything. Let sincerity create the first opening."},
+    "reversed": {"keywords": ["blocked feeling", "depletion", "withheld affection"], "text": "Emotion may be contained so tightly that it cannot nourish you or reach another person. Attend to what has been withheld. Replenishment begins by acknowledging the feeling without demanding that it immediately become action."}
+  },
+  {
+    "id": "cups_02_two", "name": "Two of Cups", "arcana": "minor", "suit": "cups", "rank": "Two",
+    "upright": {"keywords": ["partnership", "mutuality", "connection"], "text": "A meeting based on reciprocity can deepen through honest exchange. The Two of Cups favors partnership in which both sides remain visible. Offer what you hope to receive and notice whether the response is mutual."},
+    "reversed": {"keywords": ["disconnection", "imbalance", "broken agreement"], "text": "A relationship or agreement may be losing reciprocity. Attraction alone cannot repair unequal effort or unspoken resentment. Name the imbalance clearly and determine whether both sides are willing to meet again."}
+  },
+  {
+    "id": "cups_03_three", "name": "Three of Cups", "arcana": "minor", "suit": "cups", "rank": "Three",
+    "upright": {"keywords": ["friendship", "celebration", "shared joy"], "text": "Connection grows through celebration, friendship, and the relief of being witnessed by supportive people. The Three of Cups encourages shared pleasure and creative community. Let joy become something exchanged rather than privately rationed."},
+    "reversed": {"keywords": ["exclusion", "overindulgence", "social strain"], "text": "A social circle may feel draining, performative, or closed to someone who needs inclusion. Examine whether celebration has become avoidance. Choose company that allows honesty as well as pleasure."}
+  },
+  {
+    "id": "cups_04_four", "name": "Four of Cups", "arcana": "minor", "suit": "cups", "rank": "Four",
+    "upright": {"keywords": ["withdrawal", "contemplation", "missed offer"], "text": "Attention has turned inward, perhaps so completely that a real opportunity is difficult to recognize. The Four of Cups allows reflection but warns against treating every offer as repetition of an old disappointment."},
+    "reversed": {"keywords": ["renewed interest", "restlessness", "returning awareness"], "text": "A period of emotional withdrawal may be loosening. New interest can return gradually rather than dramatically. Look again at what was previously dismissed and decide from the present, not from stale disappointment."}
+  },
+  {
+    "id": "cups_05_five", "name": "Five of Cups", "arcana": "minor", "suit": "cups", "rank": "Five",
+    "upright": {"keywords": ["grief", "regret", "partial loss"], "text": "Loss deserves honest attention, but it is not the whole landscape. The Five of Cups asks you to grieve what cannot be restored while slowly noticing what remains available for care, repair, or continuation."},
+    "reversed": {"keywords": ["acceptance", "forgiveness", "recovery"], "text": "Grief or regret may be changing shape enough for life to move around it. Forgiveness does not erase consequence. It releases the demand that the past become different before the future can continue."}
+  },
+  {
+    "id": "cups_06_six", "name": "Six of Cups", "arcana": "minor", "suit": "cups", "rank": "Six",
+    "upright": {"keywords": ["memory", "innocence", "generosity"], "text": "The past returns through memory, reunion, or a simpler form of kindness. The Six of Cups invites warmth without idealizing what came before. Receive the gift of memory while remaining rooted in present reality."},
+    "reversed": {"keywords": ["living in the past", "lost innocence", "release"], "text": "Nostalgia may be polishing the past until the present cannot compete. Honor what shaped you without moving back into it. Maturity keeps the tenderness while releasing the old conditions."}
+  },
+  {
+    "id": "cups_07_seven", "name": "Seven of Cups", "arcana": "minor", "suit": "cups", "rank": "Seven",
+    "upright": {"keywords": ["choices", "fantasy", "projection"], "text": "Many possibilities are competing for emotional attention, and not all are equally real. The Seven of Cups asks for discernment between imagination that reveals desire and fantasy that prevents a grounded choice."},
+    "reversed": {"keywords": ["clarity", "overwhelm", "chosen focus"], "text": "The field of possibilities is narrowing, either through clarity or exhaustion. Choose according to values and evidence rather than intensity alone. One grounded commitment can dissolve much of the confusion."}
+  },
+  {
+    "id": "cups_08_eight", "name": "Eight of Cups", "arcana": "minor", "suit": "cups", "rank": "Eight",
+    "upright": {"keywords": ["departure", "search", "emotional truth"], "text": "Something once meaningful may no longer answer the deeper need beneath it. The Eight of Cups favors leaving with awareness rather than contempt. Seek what is missing without denying what the earlier path gave you."},
+    "reversed": {"keywords": ["fear of leaving", "return", "aimless withdrawal"], "text": "You may be circling an ending without deciding whether to leave or return. Avoid movement performed only to escape discomfort. Identify what would make staying honest and what would make departure purposeful."}
+  },
+  {
+    "id": "cups_09_nine", "name": "Nine of Cups", "arcana": "minor", "suit": "cups", "rank": "Nine",
+    "upright": {"keywords": ["satisfaction", "pleasure", "wish fulfilled"], "text": "A desire can be enjoyed in the form it has actually taken. The Nine of Cups welcomes pleasure, gratitude, and earned satisfaction. Receive the good without making it prove that every need is permanently solved."},
+    "reversed": {"keywords": ["dissatisfaction", "excess", "hollow wish"], "text": "Getting what was wanted may not have answered the need beneath it. Examine whether pleasure has become compensation or performance. A more honest wish may emerge when appearances stop defining fulfillment."}
+  },
+  {
+    "id": "cups_10_ten", "name": "Ten of Cups", "arcana": "minor", "suit": "cups", "rank": "Ten",
+    "upright": {"keywords": ["harmony", "shared fulfillment", "emotional home"], "text": "Emotional well-being is strengthened through belonging, shared values, and relationships able to hold joy. The Ten of Cups invites appreciation for the bonds that make happiness more durable than a private mood."},
+    "reversed": {"keywords": ["family strain", "false harmony", "misaligned values"], "text": "An image of perfect harmony may be concealing different needs or unresolved strain. Belonging cannot be maintained through silence alone. Make room for the conversation that allows connection to become real again."}
+  },
+  {
+    "id": "cups_11_page", "name": "Page of Cups", "arcana": "minor", "suit": "cups", "rank": "Page",
+    "upright": {"keywords": ["sensitivity", "surprise", "creative message"], "text": "A tender message, unexpected feeling, or imaginative invitation asks for curiosity. The Page of Cups favors emotional openness without embarrassment. Let wonder offer information that analysis alone might overlook."},
+    "reversed": {"keywords": ["emotional immaturity", "escapism", "blocked creativity"], "text": "Sensitivity may be turning into avoidance, fantasy, or dependence on others to regulate every feeling. Give imagination a container. Honest expression becomes stronger when it can tolerate a grounded response."}
+  },
+  {
+    "id": "cups_12_knight", "name": "Knight of Cups", "arcana": "minor", "suit": "cups", "rank": "Knight",
+    "upright": {"keywords": ["romance", "invitation", "idealism"], "text": "Feeling is becoming an offer, pursuit, or creative gesture. The Knight of Cups encourages sincerity and beauty, while asking whether the ideal can remain present when ordinary reality enters the relationship."},
+    "reversed": {"keywords": ["moodiness", "illusion", "empty promise"], "text": "A beautiful offer may lack the structure to become dependable, or mood may be steering commitment. Listen to the feeling without confusing intensity with reliability. Ask what action supports the promise."}
+  },
+  {
+    "id": "cups_13_queen", "name": "Queen of Cups", "arcana": "minor", "suit": "cups", "rank": "Queen",
+    "upright": {"keywords": ["empathy", "intuition", "emotional depth"], "text": "Deep feeling can become wisdom when it is held without being allowed to flood every boundary. The Queen of Cups favors empathy, intuitive listening, and care that includes the self as well as others."},
+    "reversed": {"keywords": ["emotional overwhelm", "dependency", "poor boundaries"], "text": "Empathy may have become absorption, leaving little distinction between your needs and another person's state. Restore the boundary that makes compassion sustainable. You can care without carrying everything."}
+  },
+  {
+    "id": "cups_14_king", "name": "King of Cups", "arcana": "minor", "suit": "cups", "rank": "King",
+    "upright": {"keywords": ["emotional balance", "diplomacy", "steady compassion"], "text": "Strong feeling can be acknowledged without surrendering judgment. The King of Cups favors calm emotional leadership, diplomacy, and compassion expressed through reliable action rather than dramatic display."},
+    "reversed": {"keywords": ["emotional control", "volatility", "withheld feeling"], "text": "Composure may be concealing manipulation, resentment, or emotion denied until it becomes volatile. Honest regulation is different from suppression. Name the feeling and take responsibility for how it is expressed."}
+  }
+]
