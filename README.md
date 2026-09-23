@@ -21,7 +21,10 @@ Requirements: the python.org Windows build of Python 3.11 or newer with Tkinter.
 Move at least one dial or lever before the first draw. Then choose a pattern
 from the spread selector and use the dynamically labeled `DRAW` button. Available patterns are One Card;
 Situation and Advice; Past, Present, and Emerging; Mind, Body, and Spirit;
-Four-Card Guidance; Five-Card Cross; and Seven-Card Path. Multi-card readings
+Four-Card Guidance; Five-Card Cross; and Seven-Card Horseshoe. The four-card
+reading follows Present, Challenge, Guidance, and Outcome; the five-card
+reading lands in a cross; and the seven-card reading lands in a traditional
+horseshoe arc. Multi-card readings
 present each card's theme, orientation, and meaning under its named position.
 Cards do not repeat during a session. `RESET DECK`
 returns all cards to the deck and creates a new session sigil.
