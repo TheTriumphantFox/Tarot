@@ -3,7 +3,6 @@ from __future__ import annotations
 import math
 import tkinter as tk
 from collections.abc import Callable
-from dataclasses import dataclass
 from pathlib import Path
 from tkinter import messagebox, ttk
 
@@ -11,6 +10,7 @@ from .interpretation import format_spread_reading, format_spread_speech
 from .models import ControlState, ReadingResult
 from .session import SignalSession
 from .speech import SpeechService
+from .spreads import SPREADS, SPREADS_BY_LABEL, SpreadDefinition
 
 
 BG = "#0b0e12"
@@ -39,69 +39,6 @@ INTRO_TEXT = (
     "of them are fused into one final signal that determines the cards.\n\n"
     "After a reading, draw again with the same settings or retune the instrument first."
 )
-
-
-@dataclass(frozen=True)
-class SpreadDefinition:
-    name: str
-    selector_label: str
-    positions: tuple[str, ...]
-    layout: str = "row"
-    image_divisor: int = 2
-
-
-SPREADS = (
-    SpreadDefinition(
-        "One Card",
-        "ONE CARD — FOCUS",
-        ("FOCUS",),
-        image_divisor=0,
-    ),
-    SpreadDefinition(
-        "Situation and Advice",
-        "TWO CARD — SITUATION · ADVICE",
-        ("SITUATION", "ADVICE"),
-    ),
-    SpreadDefinition(
-        "Past, Present, and Emerging",
-        "THREE CARD — PAST · PRESENT · EMERGING",
-        ("PAST", "PRESENT", "EMERGING"),
-    ),
-    SpreadDefinition(
-        "Mind, Body, and Spirit",
-        "THREE CARD — MIND · BODY · SPIRIT",
-        ("MIND", "BODY", "SPIRIT"),
-    ),
-    SpreadDefinition(
-        "Four-Card Guidance",
-        "FOUR CARD — PRESENT · CHALLENGE · GUIDANCE · OUTCOME",
-        ("PRESENT", "CHALLENGE", "GUIDANCE", "OUTCOME"),
-        image_divisor=3,
-    ),
-    SpreadDefinition(
-        "Five-Card Cross",
-        "FIVE CARD CROSS",
-        ("PRESENT", "CHALLENGE", "PAST", "FUTURE", "POTENTIAL"),
-        layout="cross",
-        image_divisor=5,
-    ),
-    SpreadDefinition(
-        "Seven-Card Horseshoe",
-        "SEVEN CARD HORSESHOE",
-        (
-            "PAST",
-            "PRESENT",
-            "HIDDEN INFLUENCE",
-            "OBSTACLE",
-            "ENVIRONMENT",
-            "ADVICE",
-            "OUTCOME",
-        ),
-        layout="horseshoe",
-        image_divisor=4,
-    ),
-)
-SPREADS_BY_LABEL = {spread.selector_label: spread for spread in SPREADS}
 
 
 class Dial(ttk.Frame):
@@ -1022,18 +959,136 @@ class TarotApp:
         card_height: int,
     ) -> tk.Frame:
         layout = tk.Frame(self.art_frame, background=PANEL_ALT)
-        if spread.layout == "cross":
-            slot_height = card_height + round(20 * self.scale)
-            layout.configure(height=slot_height * 3)
-            layout.pack(fill="x")
-            layout.pack_propagate(False)
-        elif spread.layout == "horseshoe":
-            layout.configure(height=card_height + round(84 * self.scale))
+        coordinates, height = self._spread_geometry(spread, card_height)
+        if coordinates is not None:
+            layout.configure(height=height)
             layout.pack(fill="x")
             layout.pack_propagate(False)
         else:
             layout.pack(fill="x")
         return layout
+
+    def _spread_geometry(
+        self,
+        spread: SpreadDefinition,
+        card_height: int,
+    ) -> tuple[tuple[tuple[float, int], ...] | None, int]:
+        """Return normalized x/pixel y coordinates for non-linear layouts."""
+        slot = card_height + round(32 * self.scale)
+        count = len(spread.positions)
+
+        if spread.layout == "row":
+            return None, 0
+        if spread.layout == "cross":
+            coordinates = (
+                (0.50, slot),
+                (0.50, slot * 2),
+                (0.23, slot),
+                (0.77, slot),
+                (0.50, 0),
+            )
+            return coordinates, slot * 3
+        if spread.layout == "horseshoe":
+            x_positions = (0.06, 0.20, 0.35, 0.50, 0.65, 0.80, 0.94)
+            y_positions = tuple(
+                round(value * self.scale) for value in (68, 34, 0, 0, 0, 34, 68)
+            )
+            return tuple(zip(x_positions, y_positions, strict=True)), slot + y_positions[-1]
+        if spread.layout == "grid":
+            columns = 3
+            coordinates = tuple(
+                ((column + 0.5) / columns, row * slot)
+                for row in range(math.ceil(count / columns))
+                for column in range(columns)
+            )[:count]
+            return coordinates, math.ceil(count / columns) * slot
+        if spread.layout == "mirror":
+            coordinates = tuple(
+                (0.27 if index % 2 == 0 else 0.73, (index // 2) * slot)
+                for index in range(count)
+            )
+            return coordinates, 3 * slot
+        if spread.layout == "pyramid":
+            coordinates = (
+                (0.20, slot * 2),
+                (0.50, slot * 2),
+                (0.80, slot * 2),
+                (0.35, slot),
+                (0.65, slot),
+                (0.50, 0),
+            )
+            return coordinates, 3 * slot
+        if spread.layout == "branches":
+            coordinates = (
+                (0.50, 0),
+                (0.22, slot),
+                (0.22, slot * 2),
+                (0.22, slot * 3),
+                (0.78, slot),
+                (0.78, slot * 2),
+                (0.78, slot * 3),
+            )
+            return coordinates, 4 * slot
+        if spread.layout == "chakra":
+            x_positions = (0.06, 0.20, 0.35, 0.50, 0.65, 0.80, 0.94)
+            y_positions = tuple(
+                round(value * self.scale) for value in (42, 27, 13, 0, 13, 27, 42)
+            )
+            return tuple(zip(x_positions, y_positions, strict=True)), slot + y_positions[0]
+        if spread.layout == "compass":
+            center_y = slot
+            coordinates = (
+                (0.50, center_y),
+                (0.50, 0),
+                (0.75, round(slot * 0.30)),
+                (0.84, center_y),
+                (0.75, round(slot * 1.70)),
+                (0.50, slot * 2),
+                (0.25, round(slot * 1.70)),
+                (0.16, center_y),
+                (0.25, round(slot * 0.30)),
+            )
+            return coordinates, 3 * slot
+        if spread.layout == "celtic_cross":
+            coordinates = (
+                (0.30, slot),
+                (0.43, slot),
+                (0.30, slot * 2),
+                (0.12, slot),
+                (0.30, 0),
+                (0.58, slot),
+                (0.86, round(slot * 2.25)),
+                (0.86, round(slot * 1.50)),
+                (0.86, round(slot * 0.75)),
+                (0.86, 0),
+            )
+            return coordinates, round(slot * 3.25)
+        if spread.layout == "tree":
+            coordinates = (
+                (0.50, 0),
+                (0.20, slot),
+                (0.50, slot),
+                (0.80, slot),
+                (0.20, slot * 2),
+                (0.50, slot * 2),
+                (0.80, slot * 2),
+                (0.20, slot * 3),
+                (0.50, slot * 3),
+                (0.80, slot * 3),
+            )
+            return coordinates, slot * 4
+        if spread.layout == "wheel":
+            center_y = slot * 1.10
+            radius_y = slot * 0.95
+            coordinates = tuple(
+                (
+                    0.50 + 0.42 * math.cos(math.radians(-90 + index * 30)),
+                    round(center_y + radius_y * math.sin(math.radians(-90 + index * 30))),
+                )
+                for index in range(12)
+            )
+            return coordinates, round(slot * 3.15)
+        raise ValueError(f"Unsupported spread layout: {spread.layout}")
 
     def _place_spread_column(
         self,
@@ -1042,28 +1097,10 @@ class TarotApp:
         spread: SpreadDefinition,
         card_height: int,
     ) -> None:
-        if spread.layout == "cross":
-            slot_height = card_height + round(20 * self.scale)
-            coordinates = (
-                (0.50, slot_height),
-                (0.50, slot_height * 2),
-                (0.23, slot_height),
-                (0.77, slot_height),
-                (0.50, 0),
-            )
+        coordinates, _ = self._spread_geometry(spread, card_height)
+        if coordinates is not None:
             relx, y = coordinates[index]
             column.place(relx=relx, y=y, anchor="n")
-            return
-        if spread.layout == "horseshoe":
-            x_positions = (0.06, 0.20, 0.35, 0.50, 0.65, 0.80, 0.94)
-            y_positions = tuple(
-                round(value * self.scale) for value in (68, 34, 0, 0, 0, 34, 68)
-            )
-            column.place(
-                relx=x_positions[index],
-                y=y_positions[index],
-                anchor="n",
-            )
             return
         column.pack(
             side="left" if len(spread.positions) > 1 else "top",
@@ -1113,7 +1150,7 @@ class TarotApp:
                     font=("Segoe UI", 8 if len(results) <= 5 else 7, "bold"),
                     wraplength=round((90 if len(results) <= 3 else 65) * self.scale),
                     justify="center",
-                    height=2 if spread.layout != "row" else 1,
+                    height=2 if spread.layout != "row" or len(results) > 3 else 1,
                 ).pack(pady=(0, round(4 * self.scale)))
             try:
                 image = self._load_card_image(result, spread=spread)
@@ -1185,7 +1222,7 @@ class TarotApp:
                         font=("Segoe UI", 8 if len(results) <= 5 else 7, "bold"),
                         wraplength=round((90 if len(results) <= 3 else 65) * self.scale),
                         justify="center",
-                        height=2 if spread.layout != "row" else 1,
+                        height=2 if spread.layout != "row" or len(results) > 3 else 1,
                     ).pack(pady=(0, round(4 * self.scale)))
 
                 holder = tk.Frame(
