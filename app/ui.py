@@ -46,10 +46,17 @@ class SpreadDefinition:
     name: str
     selector_label: str
     positions: tuple[str, ...]
+    layout: str = "row"
+    image_divisor: int = 2
 
 
 SPREADS = (
-    SpreadDefinition("One Card", "ONE CARD — FOCUS", ("FOCUS",)),
+    SpreadDefinition(
+        "One Card",
+        "ONE CARD — FOCUS",
+        ("FOCUS",),
+        image_divisor=0,
+    ),
     SpreadDefinition(
         "Situation and Advice",
         "TWO CARD — SITUATION · ADVICE",
@@ -67,26 +74,31 @@ SPREADS = (
     ),
     SpreadDefinition(
         "Four-Card Guidance",
-        "FOUR CARD — CHALLENGE · STRENGTH · GUIDANCE · OUTCOME",
-        ("CHALLENGE", "STRENGTH", "GUIDANCE", "OUTCOME"),
+        "FOUR CARD — PRESENT · CHALLENGE · GUIDANCE · OUTCOME",
+        ("PRESENT", "CHALLENGE", "GUIDANCE", "OUTCOME"),
+        image_divisor=3,
     ),
     SpreadDefinition(
         "Five-Card Cross",
         "FIVE CARD CROSS",
         ("PRESENT", "CHALLENGE", "PAST", "FUTURE", "POTENTIAL"),
+        layout="cross",
+        image_divisor=5,
     ),
     SpreadDefinition(
-        "Seven-Card Path",
-        "SEVEN CARD PATH",
+        "Seven-Card Horseshoe",
+        "SEVEN CARD HORSESHOE",
         (
-            "CURRENT STATE",
-            "INFLUENCE",
-            "OBSTACLE",
             "PAST",
-            "POSSIBILITY",
+            "PRESENT",
+            "HIDDEN INFLUENCE",
+            "OBSTACLE",
+            "ENVIRONMENT",
             "ADVICE",
             "OUTCOME",
         ),
+        layout="horseshoe",
+        image_divisor=4,
     ),
 )
 SPREADS_BY_LABEL = {spread.selector_label: spread for spread in SPREADS}
@@ -982,22 +994,82 @@ class TarotApp:
         self._deal_face_images.clear()
         self._deal_back_image = None
 
-    def _resize_card_image(self, image: tk.PhotoImage, card_count: int) -> tk.PhotoImage:
-        if card_count == 1:
+    def _resize_card_image(
+        self,
+        image: tk.PhotoImage,
+        spread: SpreadDefinition,
+    ) -> tk.PhotoImage:
+        if spread.image_divisor == 0:
             return image.zoom(2, 2).subsample(3, 3)
-        if card_count <= 3:
-            return image.subsample(2, 2)
-        if card_count <= 5:
-            return image.subsample(3, 3)
-        return image.subsample(4, 4)
+        return image.subsample(spread.image_divisor, spread.image_divisor)
 
-    def _load_card_image(self, result: ReadingResult, *, card_count: int) -> tk.PhotoImage:
+    def _load_card_image(
+        self,
+        result: ReadingResult,
+        *,
+        spread: SpreadDefinition,
+    ) -> tk.PhotoImage:
         suffix = "-reversed" if result.reversed else ""
         path = self._art_directory / f"{result.card.id}{suffix}.png"
         image = tk.PhotoImage(file=str(path))
-        image = self._resize_card_image(image, card_count)
+        image = self._resize_card_image(image, spread)
         self._card_images.append(image)
         return image
+
+    def _create_spread_layout(
+        self,
+        spread: SpreadDefinition,
+        card_height: int,
+    ) -> tk.Frame:
+        layout = tk.Frame(self.art_frame, background=PANEL_ALT)
+        if spread.layout == "cross":
+            slot_height = card_height + round(20 * self.scale)
+            layout.configure(height=slot_height * 3)
+            layout.pack(fill="x")
+            layout.pack_propagate(False)
+        elif spread.layout == "horseshoe":
+            layout.configure(height=card_height + round(84 * self.scale))
+            layout.pack(fill="x")
+            layout.pack_propagate(False)
+        else:
+            layout.pack(fill="x")
+        return layout
+
+    def _place_spread_column(
+        self,
+        column: tk.Frame,
+        index: int,
+        spread: SpreadDefinition,
+        card_height: int,
+    ) -> None:
+        if spread.layout == "cross":
+            slot_height = card_height + round(20 * self.scale)
+            coordinates = (
+                (0.50, slot_height),
+                (0.50, slot_height * 2),
+                (0.23, slot_height),
+                (0.77, slot_height),
+                (0.50, 0),
+            )
+            relx, y = coordinates[index]
+            column.place(relx=relx, y=y, anchor="n")
+            return
+        if spread.layout == "horseshoe":
+            x_positions = (0.06, 0.20, 0.35, 0.50, 0.65, 0.80, 0.94)
+            y_positions = tuple(
+                round(value * self.scale) for value in (68, 34, 0, 0, 0, 34, 68)
+            )
+            column.place(
+                relx=x_positions[index],
+                y=y_positions[index],
+                anchor="n",
+            )
+            return
+        column.pack(
+            side="left" if len(spread.positions) > 1 else "top",
+            expand=len(spread.positions) > 1,
+            padx=round((5 if len(spread.positions) <= 3 else 2) * self.scale),
+        )
 
     def _show_card_back(self) -> None:
         self._clear_card_art()
@@ -1026,13 +1098,12 @@ class TarotApp:
     ) -> None:
         self._clear_card_art()
         compact = len(results) > 1
+        card_height = 200 if spread.image_divisor == 0 else math.ceil(
+            300 / spread.image_divisor
+        )
+        layout = self._create_spread_layout(spread, card_height)
         for index, result in enumerate(results):
-            column = tk.Frame(self.art_frame, background=PANEL_ALT)
-            column.pack(
-                side="left" if compact else "top",
-                expand=compact,
-                padx=round((5 if len(results) <= 3 else 2) * self.scale),
-            )
+            column = tk.Frame(layout, background=PANEL_ALT)
             if compact:
                 tk.Label(
                     column,
@@ -1042,9 +1113,10 @@ class TarotApp:
                     font=("Segoe UI", 8 if len(results) <= 5 else 7, "bold"),
                     wraplength=round((90 if len(results) <= 3 else 65) * self.scale),
                     justify="center",
+                    height=2 if spread.layout != "row" else 1,
                 ).pack(pady=(0, round(4 * self.scale)))
             try:
-                image = self._load_card_image(result, card_count=len(results))
+                image = self._load_card_image(result, spread=spread)
             except tk.TclError:
                 tk.Label(
                     column,
@@ -1053,14 +1125,14 @@ class TarotApp:
                     foreground=RED,
                     font=("Consolas", 8, "bold"),
                 ).pack(padx=12, pady=24)
-                continue
-            tk.Label(
-                column,
-                image=image,
-                background=PANEL_ALT,
-                borderwidth=0,
-            ).pack()
-            if compact:
+            else:
+                tk.Label(
+                    column,
+                    image=image,
+                    background=PANEL_ALT,
+                    borderwidth=0,
+                ).pack()
+            if compact and spread.layout == "row":
                 tk.Label(
                     column,
                     text="REVERSED" if result.reversed else "UPRIGHT",
@@ -1068,6 +1140,7 @@ class TarotApp:
                     foreground=AMBER,
                     font=("Segoe UI", 8, "bold"),
                 ).pack(pady=(round(4 * self.scale), 0))
+            self._place_spread_column(column, index, spread, card_height)
 
     def _start_card_sequence(
         self,
@@ -1096,17 +1169,13 @@ class TarotApp:
         compact = len(results) > 1
         try:
             back = tk.PhotoImage(file=str(self._art_directory / "card-back.png"))
-            back = self._resize_card_image(back, len(results))
+            back = self._resize_card_image(back, spread)
             self._card_images.append(back)
             self._deal_back_image = back
+            layout = self._create_spread_layout(spread, back.height())
 
             for index, result in enumerate(results):
-                column = tk.Frame(self.art_frame, background=PANEL_ALT)
-                column.pack(
-                    side="left" if compact else "top",
-                    expand=compact,
-                    padx=round((5 if len(results) <= 3 else 2) * self.scale),
-                )
+                column = tk.Frame(layout, background=PANEL_ALT)
                 if compact:
                     tk.Label(
                         column,
@@ -1116,6 +1185,7 @@ class TarotApp:
                         font=("Segoe UI", 8 if len(results) <= 5 else 7, "bold"),
                         wraplength=round((90 if len(results) <= 3 else 65) * self.scale),
                         justify="center",
+                        height=2 if spread.layout != "row" else 1,
                     ).pack(pady=(0, round(4 * self.scale)))
 
                 holder = tk.Frame(
@@ -1135,7 +1205,7 @@ class TarotApp:
                 )
                 card_label.place_forget()
 
-                face = self._load_card_image(result, card_count=len(results))
+                face = self._load_card_image(result, spread=spread)
                 orientation_label = tk.Label(
                     column,
                     text="" if compact else " ",
@@ -1143,13 +1213,19 @@ class TarotApp:
                     foreground=AMBER,
                     font=("Segoe UI", 8, "bold"),
                 )
-                if compact:
+                if compact and spread.layout == "row":
                     orientation_label.pack(pady=(round(4 * self.scale), 0))
 
                 self._deal_holders.append(holder)
                 self._deal_labels.append(card_label)
                 self._deal_face_images.append(face)
                 self._deal_orientation_labels.append(orientation_label)
+                self._place_spread_column(
+                    column,
+                    index,
+                    spread,
+                    back.height(),
+                )
         except tk.TclError:
             self._clear_card_art()
             return False

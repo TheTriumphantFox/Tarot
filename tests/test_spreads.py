@@ -14,14 +14,14 @@ class SpreadCatalogTests(unittest.TestCase):
                 ("SITUATION", "ADVICE"),
                 ("PAST", "PRESENT", "EMERGING"),
                 ("MIND", "BODY", "SPIRIT"),
-                ("CHALLENGE", "STRENGTH", "GUIDANCE", "OUTCOME"),
+                ("PRESENT", "CHALLENGE", "GUIDANCE", "OUTCOME"),
                 ("PRESENT", "CHALLENGE", "PAST", "FUTURE", "POTENTIAL"),
                 (
-                    "CURRENT STATE",
-                    "INFLUENCE",
-                    "OBSTACLE",
                     "PAST",
-                    "POSSIBILITY",
+                    "PRESENT",
+                    "HIDDEN INFLUENCE",
+                    "OBSTACLE",
+                    "ENVIRONMENT",
                     "ADVICE",
                     "OUTCOME",
                 ),
@@ -32,6 +32,11 @@ class SpreadCatalogTests(unittest.TestCase):
     def test_spread_selector_labels_are_unique(self) -> None:
         labels = [spread.selector_label for spread in SPREADS]
         self.assertEqual(len(labels), len(set(labels)))
+
+    def test_cross_and_horseshoe_use_spatial_layouts(self) -> None:
+        spreads = {spread.name: spread for spread in SPREADS}
+        self.assertEqual("cross", spreads["Five-Card Cross"].layout)
+        self.assertEqual("horseshoe", spreads["Seven-Card Horseshoe"].layout)
 
 
 if __name__ == "__main__":
