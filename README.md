@@ -13,18 +13,24 @@ entirely local.
 
 ## Run it
 
-Requirements: the python.org Windows build of Python 3.11 or newer with Tkinter.
+For the standalone Windows release, download and run `Tarot.exe`. It contains
+the Python runtime, deck data, card thumbnails, and local speech helper, so no
+installation or network connection is required.
+
+To run from source, use the python.org Windows build of Python 3.11 or newer
+with Tkinter.
 
 - Double-click `run.bat`, or
 - Open a terminal in this folder and run `python main.py`.
 
 Move at least one dial or lever before the first draw. Then choose a pattern
-from the spread selector and use the dynamically labeled `DRAW` button. Available patterns are One Card;
-Situation and Advice; Past, Present, and Emerging; Mind, Body, and Spirit;
-Four-Card Guidance; Five-Card Cross; and Seven-Card Horseshoe. The four-card
-reading follows Present, Challenge, Guidance, and Outcome; the five-card
-reading lands in a cross; and the seven-card reading lands in a traditional
-horseshoe arc. Multi-card readings
+from the spread selector and use the dynamically labeled `DRAW` button. The
+library contains 44 spreads ranging from one to twelve cards. It includes quick
+daily prompts; relationship, career, financial, creative, healing, shadow-work,
+and decision readings; plus traditional layouts such as the Horseshoe, Celtic
+Cross, Tree of Life, Year Ahead, and Zodiac Wheel. Spatial spreads are dealt in
+their own cross, arc, branch, mirror, pyramid, grid, compass, tree, or wheel
+arrangements rather than flattened into a row. Multi-card readings
 present each card's theme, orientation, and meaning under its named position.
 Cards do not repeat during a session. `RESET DECK`
 returns all cards to the deck and creates a new session sigil.
@@ -83,3 +89,7 @@ application closes or the reading is reset.
 Signal Tarot is a reflective spiritual tool. It does not claim to verify spirit
 communication and should not replace medical, legal, financial, or mental-health
 advice.
+
+## License
+
+Signal Tarot is released under the [MIT License](LICENSE).
