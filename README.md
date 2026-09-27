@@ -30,14 +30,17 @@ daily prompts; relationship, career, financial, creative, healing, shadow-work,
 and decision readings; plus traditional layouts such as the Horseshoe, Celtic
 Cross, Tree of Life, Year Ahead, and Zodiac Wheel. Spatial spreads are dealt in
 their own cross, arc, branch, mirror, pyramid, grid, compass, tree, or wheel
-arrangements rather than flattened into a row. Multi-card readings
-present each card's theme, orientation, and meaning under its named position.
+arrangements rather than flattened into a row. Multi-card readings present
+each card's theme, orientation, and meaning under its named position. Click any
+card in the spread to enlarge it; use the Left and Right arrow keys to inspect
+adjacent cards, then select `VIEW FULL SPREAD` or press Escape to return.
 Cards do not repeat during a session. `RESET DECK`
 returns all cards to the deck and creates a new session sigil.
 
 Single-card readings display one illustrated face. Multi-card readings display
 their named positions together, automatically scaling the artwork for larger
-patterns. Reversed cards are shown upside-down as well as labeled, while the resting screen shows the
+patterns. A selected card opens at the larger single-card size. Reversed cards
+are shown upside-down as well as labeled, while the resting screen shows the
 non-directional deck back. After each measurement, the selected cards are
 dealt face down from the top of the window and revealed one at a time before
 the interpretation appears. Full-resolution masters live in
