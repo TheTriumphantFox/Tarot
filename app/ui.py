@@ -430,6 +430,7 @@ class TarotApp:
         self._deal_orientation_labels: list[tk.Label] = []
         self._deal_face_images: list[tk.PhotoImage] = []
         self._deal_back_image: tk.PhotoImage | None = None
+        self._reading_resize_job: str | None = None
         self._busy = False
         self._measuring = False
         self._measurement_card_count = 1
@@ -680,15 +681,47 @@ class TarotApp:
         )
         self.filter_mode.grid(row=2, column=1, padx=round(7 * self.scale))
 
-        result_panel = ttk.Frame(
+        result_shell = ttk.Frame(
             outer,
+            style="Result.TFrame",
+        )
+        self.result_shell = result_shell
+        result_shell.grid(row=1, column=1, sticky="nsew")
+        result_shell.rowconfigure(0, weight=1)
+        result_shell.columnconfigure(0, weight=1)
+
+        self.result_canvas = tk.Canvas(
+            result_shell,
+            background=PANEL_ALT,
+            borderwidth=0,
+            highlightthickness=0,
+            yscrollincrement=max(1, round(24 * self.scale)),
+        )
+        self.result_canvas.grid(row=0, column=0, sticky="nsew")
+        self.result_scrollbar = ttk.Scrollbar(
+            result_shell,
+            orient="vertical",
+            command=self.result_canvas.yview,
+        )
+        self.result_scrollbar.grid(row=0, column=1, sticky="ns")
+        self.result_canvas.configure(yscrollcommand=self.result_scrollbar.set)
+
+        result_panel = ttk.Frame(
+            self.result_canvas,
             style="Result.TFrame",
             padding=round(24 * self.scale),
         )
         self.result_panel = result_panel
-        result_panel.grid(row=1, column=1, sticky="nsew")
+        self._result_canvas_window = self.result_canvas.create_window(
+            0,
+            0,
+            window=result_panel,
+            anchor="nw",
+        )
+        result_panel.bind("<Configure>", self._sync_result_scrollregion)
+        self.result_canvas.bind("<Configure>", self._resize_result_content)
+        self.root.bind("<MouseWheel>", self._scroll_result_panel, add="+")
         result_panel.columnconfigure(0, weight=1)
-        result_panel.rowconfigure(6, weight=1)
 
         self.status_label = ttk.Label(result_panel, text="THE SIGNAL IS QUIET", style="Status.TLabel")
         self.status_label.grid(row=0, column=0, sticky="w")
@@ -705,8 +738,7 @@ class TarotApp:
         self.keywords_label = ttk.Label(result_panel, text="", style="Keywords.TLabel")
         self.keywords_label.grid(row=5, column=0, sticky="w", pady=(round(16 * self.scale), 0))
         reading_frame = tk.Frame(result_panel, background=PANEL_ALT)
-        reading_frame.grid(row=6, column=0, sticky="nsew", pady=(round(10 * self.scale), 0))
-        reading_frame.rowconfigure(0, weight=1)
+        reading_frame.grid(row=6, column=0, sticky="ew", pady=(round(10 * self.scale), 0))
         reading_frame.columnconfigure(0, weight=1)
         self.meaning_text = tk.Text(
             reading_frame,
@@ -723,15 +755,11 @@ class TarotApp:
             padx=0,
             pady=0,
             cursor="arrow",
+            height=8,
         )
-        self.meaning_text.grid(row=0, column=0, sticky="nsew")
-        reading_scroll = ttk.Scrollbar(
-            reading_frame,
-            orient="vertical",
-            command=self.meaning_text.yview,
-        )
-        reading_scroll.grid(row=0, column=1, sticky="ns", padx=(round(8 * self.scale), 0))
-        self.meaning_text.configure(yscrollcommand=reading_scroll.set)
+        self.meaning_text.grid(row=0, column=0, sticky="ew")
+        self.meaning_text.bind("<Configure>", self._schedule_reading_resize)
+        self.meaning_text.bind("<MouseWheel>", self._scroll_result_panel)
         self._set_reading_text(INTRO_TEXT)
 
         bottom = ttk.Frame(result_panel, style="Result.TFrame")
@@ -760,6 +788,7 @@ class TarotApp:
         )
         self.spread_selector.grid(row=1, column=0, sticky="ew")
         self.spread_selector.bind("<<ComboboxSelected>>", self._spread_selected)
+        self.spread_selector.bind("<MouseWheel>", self._scroll_result_panel)
         self.draw_button = ttk.Button(
             bottom,
             text="DRAW 1 CARD",
@@ -781,7 +810,7 @@ class TarotApp:
         )
         self.reset_button.grid(row=1, column=2, padx=(round(8 * self.scale), 0))
 
-        self.measurement_overlay = tk.Frame(result_panel, background=PANEL_ALT)
+        self.measurement_overlay = tk.Frame(result_shell, background=PANEL_ALT)
         measurement_prompt = tk.Label(
             self.measurement_overlay,
             text="Concentrate on Your Question",
@@ -792,6 +821,65 @@ class TarotApp:
             justify="center",
         )
         measurement_prompt.pack(expand=True, fill="both", padx=30, pady=30)
+
+    def _sync_result_scrollregion(self, _event: tk.Event | None = None) -> None:
+        bounds = self.result_canvas.bbox("all")
+        if bounds is not None:
+            self.result_canvas.configure(scrollregion=bounds)
+
+    def _resize_result_content(self, event: tk.Event) -> None:
+        self.result_canvas.itemconfigure(
+            self._result_canvas_window,
+            width=max(1, event.width),
+        )
+        self._schedule_reading_resize()
+        self._sync_result_scrollregion()
+
+    def _widget_is_in_result_panel(self, widget: tk.Misc) -> bool:
+        current: tk.Misc | None = widget
+        while current is not None:
+            if current is self.result_shell:
+                return True
+            parent_name = current.winfo_parent()
+            if not parent_name:
+                return False
+            try:
+                current = current.nametowidget(parent_name)
+            except KeyError:
+                return False
+        return False
+
+    def _scroll_result_panel(self, event: tk.Event) -> str | None:
+        if not self._widget_is_in_result_panel(event.widget):
+            return None
+        delta = getattr(event, "delta", 0)
+        if delta == 0:
+            return None
+        units = -3 if delta > 0 else 3
+        self.result_canvas.yview_scroll(units, "units")
+        return "break"
+
+    def _scroll_result_to_top(self) -> None:
+        self.root.after_idle(lambda: self.result_canvas.yview_moveto(0.0))
+
+    def _schedule_reading_resize(self, _event: tk.Event | None = None) -> None:
+        if self._reading_resize_job is None:
+            self._reading_resize_job = self.root.after_idle(self._resize_reading_text)
+
+    def _resize_reading_text(self) -> None:
+        self._reading_resize_job = None
+        if not self.meaning_text.winfo_exists():
+            return
+        try:
+            counted = self.meaning_text.count("1.0", "end-1c", "displaylines")
+            display_lines = int(counted[0]) if counted else 1
+        except tk.TclError:
+            display_lines = int(self.meaning_text.index("end-1c").split(".")[0])
+        requested_lines = max(4, display_lines)
+        if int(self.meaning_text.cget("height")) != requested_lines:
+            self.meaning_text.configure(height=requested_lines)
+        self.meaning_text.yview_moveto(0.0)
+        self._sync_result_scrollregion()
 
     def _current_state(self) -> ControlState:
         return ControlState(
@@ -835,6 +923,7 @@ class TarotApp:
                 "The selected spread is shown face down above. Each labeled place "
                 "will receive one card when the signal resolves."
             )
+            self._scroll_result_to_top()
         self._update_draw_buttons()
 
     def _begin_reading(self, spread: SpreadDefinition) -> None:
@@ -848,6 +937,7 @@ class TarotApp:
         self._measurement_spread = spread
         self._measurement_duration = self.duration.value
         self._measurement_samples = []
+        self._scroll_result_to_top()
         self.duration.set_enabled(False)
         self.draw_button.configure(state="disabled")
         self.spread_selector.configure(state="disabled")
@@ -1083,19 +1173,23 @@ class TarotApp:
             )
             return coordinates, 3 * slot
         if spread.layout == "celtic_cross":
+            # The right-hand staff needs four complete label/card rows. Its
+            # former three-quarter-slot offsets caused two-line position labels
+            # to collide after the card artwork was doubled in size.
+            celtic_slot = card_height + round(42 * self.scale)
             coordinates = (
-                (0.30, slot),
-                (0.43, slot),
-                (0.30, slot * 2),
-                (0.12, slot),
+                (0.28, celtic_slot),
+                (0.44, celtic_slot),
+                (0.28, celtic_slot * 2),
+                (0.08, celtic_slot),
                 (0.30, 0),
-                (0.58, slot),
-                (0.86, round(slot * 2.25)),
-                (0.86, round(slot * 1.50)),
-                (0.86, round(slot * 0.75)),
-                (0.86, 0),
+                (0.60, celtic_slot),
+                (0.88, celtic_slot * 3),
+                (0.88, celtic_slot * 2),
+                (0.88, celtic_slot),
+                (0.88, 0),
             )
-            return coordinates, round(slot * 3.25)
+            return coordinates, celtic_slot * 4
         if spread.layout == "tree":
             coordinates = (
                 (0.50, 0),
@@ -1741,6 +1835,7 @@ class TarotApp:
         self.meaning_text.insert("1.0", text)
         self.meaning_text.configure(state="disabled")
         self.meaning_text.yview_moveto(0.0)
+        self._schedule_reading_resize()
 
     def _update_draw_buttons(self) -> None:
         if self._busy:
@@ -1832,6 +1927,7 @@ class TarotApp:
         self.orientation_label.configure(text="TUNE THE INSTRUMENT TO BEGIN")
         self.keywords_label.configure(text="")
         self._set_reading_text(INTRO_TEXT)
+        self._scroll_result_to_top()
         self._update_draw_buttons()
         self.reset_button.configure(state="normal")
         self._refresh_session_labels()

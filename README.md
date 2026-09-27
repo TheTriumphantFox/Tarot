@@ -13,9 +13,10 @@ entirely local.
 
 ## Run it
 
-For the standalone Windows release, download and run `Tarot.exe`. It contains
-the Python runtime, deck data, card thumbnails, and local speech helper, so no
-installation or network connection is required.
+For the standalone Windows release, download and run `Singnal Tarot 0.2.exe`.
+It contains the Python runtime, deck data, card thumbnails, and local speech
+helper, so no installation or network connection is required. Release builds
+use a trailing version number in the filename, incremented with every update.
 
 To run from source, use the python.org Windows build of Python 3.11 or newer
 with Tkinter.
