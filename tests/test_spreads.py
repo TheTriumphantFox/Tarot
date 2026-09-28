@@ -55,6 +55,7 @@ class SpreadCatalogTests(unittest.TestCase):
         for spread in SPREADS:
             self.assertTrue(spread.name.strip())
             self.assertTrue(spread.selector_label.strip())
+            self.assertGreaterEqual(len(spread.description.strip()), 40)
             self.assertTrue(all(position.strip() for position in spread.positions))
             self.assertLessEqual(len(spread.positions), 12)
             self.assertGreaterEqual(spread.image_divisor, 0)

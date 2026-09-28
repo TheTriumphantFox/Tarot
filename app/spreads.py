@@ -13,6 +13,59 @@ class SpreadDefinition:
     layout: str = "row"
     image_divisor: int = 2
 
+    @property
+    def description(self) -> str:
+        """Explain the question or reflection this spread is designed to hold."""
+        return _SPREAD_DESCRIPTIONS[self.name]
+
+
+_SPREAD_DESCRIPTIONS = {
+    "One Card": "A focused single-card reading that clarifies the central energy, lesson, or guidance surrounding your question.",
+    "Situation and Advice": "A direct two-card reading that names what is happening now and the most useful way to respond.",
+    "Release and Receive": "Shows what is ready to be released and what can enter when space is made.",
+    "Choice and Cost": "Examines the path you are considering alongside the commitment, tradeoff, or consequence it requires.",
+    "Past, Present, and Emerging": "Traces the influence of the past through the present and into the energy now beginning to form.",
+    "Mind, Body, and Spirit": "Checks the alignment of your thoughts, physical needs, and inner life.",
+    "Problem, Root, and Remedy": "Identifies the visible problem, its deeper source, and a constructive response.",
+    "Strength, Challenge, and Next Step": "Balances the resource already available to you against the obstacle ahead and the next practical move.",
+    "Relationship Pulse": "Reads your energy, the other person's energy, and the connection created between you.",
+    "Think, Feel, and Do": "Separates thought, emotion, and action so you can see where they align or conflict.",
+    "Stop, Start, and Continue": "Offers a simple course correction by showing what to end, begin, and sustain.",
+    "Daily Guidance": "Frames the day through its main theme, a caution to remember, and one grounded action.",
+    "Four-Card Guidance": "Surveys the present situation, its challenge, available guidance, and likely direction.",
+    "Situation, Advice, Avoid, and Outcome": "Clarifies the situation, a helpful response, a counterproductive pattern, and the outcome your choices may support.",
+    "Inner Conflict": "Reveals the conscious and hidden desires creating tension and suggests a way to integrate them.",
+    "Self-Love Check-In": "Examines your relationship with yourself, an unmet need, an existing strength, and a caring action.",
+    "New Connection": "Explores attraction, healthy pacing, a signal to notice, and the conversation that can build clarity.",
+    "Lunar Reflection": "Uses a release-retain-receive-integrate cycle for reflection at a transition or turning point.",
+    "Five-Card Cross": "Places the present at the center of past, future, challenge, and potential influences.",
+    "Shadow Work": "Approaches a recurring pattern with compassion by exploring its root, protective purpose, current cost, and a safer response.",
+    "Career Path": "Reviews your current work position, overlooked strengths, obstacles, promising direction, and next move.",
+    "Healing After Heartbreak": "Supports emotional recovery by naming the hurt, what lingers, what needs grieving, available support, and a way forward.",
+    "Life Purpose": "Connects your gifts and values with meaningful work, service, and a small experiment you can begin.",
+    "Financial Health Check": "Assesses your material foundation, money patterns, current pressure, available resources, and a practical step.",
+    "Goal Setting": "Tests a goal against your motivation, obstacles, resources, and the first milestone that can make it real.",
+    "Pros and Cons": "Looks beyond a simple yes or no by weighing benefit, cost, uncertainty, and the next informed step.",
+    "Four Elements": "Checks the balance of earth, air, fire, and water, then shows how their energies can be integrated.",
+    "Relationship Mirror": "Compares both people's energy, the shared dynamic, unspoken needs, necessary boundaries, and growth potential.",
+    "Business Idea": "Tests an idea against a real need, its distinctive value, available resources, risks, and the smallest useful experiment.",
+    "Personal Growth Pyramid": "Builds from your current foundation through lesson, action, and support toward an emerging strength and potential.",
+    "Career Change": "Explores why change is calling, what to keep and release, your readiness, the risk, and the next move.",
+    "Creative Project": "Follows a project from its spark and purpose through resources, blocks, experimentation, and potential.",
+    "Seven-Card Horseshoe": "Offers a broad arc from past and present influences through hidden factors, obstacles, environment, advice, and outcome.",
+    "Two-Path Decision": "Compares two choices by showing the gift, cost, and direction of each around the same core issue.",
+    "Chakra Alignment": "Moves from root to crown to show where energy feels supported, strained, or ready for attention.",
+    "Week Ahead": "Assigns one card to each day to reveal the week's changing rhythm and useful points of attention.",
+    "Stay or Go": "Compares staying and leaving through the gift, cost, and likely direction of each path.",
+    "Relationship Deep Dive": "Examines both partners, the bond's strength and tension, an unspoken truth, needed action, and direction.",
+    "Nine-Card Portrait": "Maps past, present, and emerging influences across mind, heart, and practical foundation.",
+    "Seasonal Compass": "Places your central theme within eight surrounding directions to reveal pressures, supports, and possible movement.",
+    "Celtic Cross": "A comprehensive reading of the present issue, what crosses it, its roots and history, emerging possibilities, and the inner and outer forces shaping its direction.",
+    "Tree of Life": "Uses ten interconnected stations to trace an issue from higher purpose and understanding into emotion, intellect, foundation, and manifestation.",
+    "Year Ahead": "Provides one card for each month to reveal the themes, transitions, and rhythm of the coming year.",
+    "Zodiac Wheel": "Reads twelve areas of life-from identity and resources to relationships, vocation, community, and inner life-as one complete cycle.",
+}
+
 
 # Ordered by card count, then from broad everyday readings toward deeper and
 # more specialized work. Keeping the catalog as data makes new spreads easy to
