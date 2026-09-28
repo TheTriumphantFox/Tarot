@@ -24,6 +24,9 @@ AMBER = "#d9a441"
 GREEN = "#7b9b78"
 RED = "#9b5f58"
 TRACK = "#252c31"
+CARD_DISPLAY_WIDTH = 200
+CARD_DISPLAY_HEIGHT = 300
+CARD_IMAGE_SUBSAMPLE = 1
 
 INTRO_TEXT = (
     "HOW TO USE THE INSTRUMENT\n\n"
@@ -430,6 +433,7 @@ class TarotApp:
         self._deal_orientation_labels: list[tk.Label] = []
         self._deal_face_images: list[tk.PhotoImage] = []
         self._deal_back_image: tk.PhotoImage | None = None
+        self._art_content_width = 1
         self._reading_resize_job: str | None = None
         self._busy = False
         self._measuring = False
@@ -728,8 +732,48 @@ class TarotApp:
         self.meter = SignalMeter(result_panel, scale=self.scale)
         self.meter.grid(row=1, column=0, sticky="ew", pady=(round(10 * self.scale), round(24 * self.scale)))
 
-        self.art_frame = tk.Frame(result_panel, background=PANEL_ALT)
-        self.art_frame.grid(row=2, column=0, sticky="ew", pady=(0, round(12 * self.scale)))
+        self.art_section = tk.Frame(result_panel, background=PANEL_ALT)
+        self.art_section.grid(row=2, column=0, sticky="ew", pady=(0, round(12 * self.scale)))
+        self.art_section.columnconfigure(0, weight=1)
+        self.spread_description_label = tk.Label(
+            self.art_section,
+            text=SPREADS[0].description,
+            background=PANEL_ALT,
+            foreground=IVORY,
+            font=("Segoe UI", 10),
+            anchor="w",
+            justify="left",
+        )
+        self.spread_description_label.grid(
+            row=0,
+            column=0,
+            sticky="ew",
+            pady=(0, round(10 * self.scale)),
+        )
+        self.art_canvas = tk.Canvas(
+            self.art_section,
+            background=PANEL_ALT,
+            borderwidth=0,
+            highlightthickness=0,
+            xscrollincrement=max(1, round(24 * self.scale)),
+        )
+        self.art_scrollbar = ttk.Scrollbar(
+            self.art_section,
+            orient="horizontal",
+            command=self.art_canvas.xview,
+        )
+        self.art_scrollbar.grid(row=1, column=0, sticky="ew", pady=(0, round(6 * self.scale)))
+        self.art_canvas.grid(row=2, column=0, sticky="ew")
+        self.art_canvas.configure(xscrollcommand=self.art_scrollbar.set)
+        self.art_frame = tk.Frame(self.art_canvas, background=PANEL_ALT)
+        self._art_canvas_window = self.art_canvas.create_window(
+            0,
+            0,
+            window=self.art_frame,
+            anchor="nw",
+        )
+        self.art_canvas.bind("<Configure>", self._resize_art_viewport)
+        self.art_frame.bind("<Configure>", self._sync_art_viewport)
 
         self.card_name_label = ttk.Label(result_panel, text="—", style="CardName.TLabel")
         self.card_name_label.grid(row=3, column=0, sticky="w")
@@ -835,6 +879,30 @@ class TarotApp:
         self._schedule_reading_resize()
         self._sync_result_scrollregion()
 
+    def _resize_art_viewport(self, event: tk.Event | None = None) -> None:
+        if event is not None:
+            self.spread_description_label.configure(wraplength=max(240, event.width))
+        self._sync_art_viewport()
+
+    def _sync_art_viewport(self, _event: tk.Event | None = None) -> None:
+        viewport_width = max(1, self.art_canvas.winfo_width())
+        content_width = max(viewport_width, self._art_content_width)
+        content_height = max(1, self.art_frame.winfo_reqheight())
+        self.art_canvas.itemconfigure(
+            self._art_canvas_window,
+            width=content_width,
+            height=content_height,
+        )
+        self.art_canvas.configure(
+            height=content_height,
+            scrollregion=(0, 0, content_width, content_height),
+        )
+        if content_width > viewport_width:
+            self.art_scrollbar.grid()
+        else:
+            self.art_scrollbar.grid_remove()
+        self._sync_result_scrollregion()
+
     def _widget_is_in_result_panel(self, widget: tk.Misc) -> bool:
         current: tk.Misc | None = widget
         while current is not None:
@@ -872,7 +940,9 @@ class TarotApp:
             return
         try:
             counted = self.meaning_text.count("1.0", "end-1c", "displaylines")
-            display_lines = int(counted[0]) if counted else 1
+            # Tk reports the number of display-line transitions between the
+            # indices, so the final visible line must be included explicitly.
+            display_lines = (int(counted[0]) if counted else 0) + 1
         except tk.TclError:
             display_lines = int(self.meaning_text.index("end-1c").split(".")[0])
         requested_lines = max(4, display_lines)
@@ -909,6 +979,7 @@ class TarotApp:
 
     def _spread_selected(self, _event: tk.Event | None = None) -> None:
         spread = self._selected_spread()
+        self.spread_description_label.configure(text=spread.description)
         count = len(spread.positions)
         noun = "CARD" if count == 1 else "CARDS"
         self.draw_button.configure(text=f"DRAW {count} {noun}")
@@ -937,6 +1008,7 @@ class TarotApp:
         self._measurement_spread = spread
         self._measurement_duration = self.duration.value
         self._measurement_samples = []
+        self.spread_description_label.configure(text=spread.description)
         self._scroll_result_to_top()
         self.duration.set_enabled(False)
         self.draw_button.configure(state="disabled")
@@ -1031,6 +1103,9 @@ class TarotApp:
     def _clear_card_art(self) -> None:
         for child in self.art_frame.winfo_children():
             child.destroy()
+        self._art_content_width = max(1, self.art_canvas.winfo_width())
+        self.art_canvas.xview_moveto(0.0)
+        self.root.after_idle(self._sync_art_viewport)
         self._card_images.clear()
         self._deal_holders.clear()
         self._deal_labels.clear()
@@ -1041,38 +1116,18 @@ class TarotApp:
     def _resize_card_image(
         self,
         image: tk.PhotoImage,
-        spread: SpreadDefinition,
-        *,
-        focused: bool = False,
     ) -> tk.PhotoImage:
-        if focused or spread.image_divisor == 0:
-            return image.zoom(4, 4).subsample(3, 3)
-        return image.zoom(2, 2).subsample(
-            spread.image_divisor,
-            spread.image_divisor,
-        )
-
-    def _display_card_height(
-        self,
-        spread: SpreadDefinition,
-        *,
-        preview: bool = False,
-    ) -> int:
-        if spread.image_divisor == 0:
-            return 300 if preview else 400
-        return math.ceil(600 / spread.image_divisor)
+        """Return the single display size used by every card in every view."""
+        return image.subsample(CARD_IMAGE_SUBSAMPLE, CARD_IMAGE_SUBSAMPLE)
 
     def _load_card_image(
         self,
         result: ReadingResult,
-        *,
-        spread: SpreadDefinition,
-        focused: bool = False,
     ) -> tk.PhotoImage:
         suffix = "-reversed" if result.reversed else ""
         path = self._art_directory / f"{result.card.id}{suffix}.png"
         image = tk.PhotoImage(file=str(path))
-        image = self._resize_card_image(image, spread, focused=focused)
+        image = self._resize_card_image(image)
         self._card_images.append(image)
         return image
 
@@ -1083,13 +1138,31 @@ class TarotApp:
     ) -> tk.Frame:
         layout = tk.Frame(self.art_frame, background=PANEL_ALT)
         coordinates, height = self._spread_geometry(spread, card_height)
+        self._art_content_width = self._spread_layout_width(spread)
+        layout.configure(width=self._art_content_width)
         if coordinates is not None:
             layout.configure(height=height)
             layout.pack(fill="x")
             layout.pack_propagate(False)
         else:
             layout.pack(fill="x")
+        self.root.after_idle(self._sync_art_viewport)
         return layout
+
+    def _spread_layout_width(self, spread: SpreadDefinition) -> int:
+        """Return enough horizontal space for uniform 200 px cards."""
+        viewport_width = max(1, self.art_canvas.winfo_width())
+        if spread.layout == "row":
+            required = len(spread.positions) * CARD_DISPLAY_WIDTH
+        elif spread.layout in {"horseshoe", "chakra"}:
+            required = 1450
+        elif spread.layout == "celtic_cross":
+            required = 1270
+        elif spread.layout == "wheel":
+            required = 1320
+        else:
+            required = viewport_width
+        return max(viewport_width, required)
 
     def _spread_geometry(
         self,
@@ -1097,7 +1170,9 @@ class TarotApp:
         card_height: int,
     ) -> tuple[tuple[tuple[float, int], ...] | None, int]:
         """Return normalized x/pixel y coordinates for non-linear layouts."""
-        slot = card_height + round(32 * self.scale)
+        # Two-line position labels need roughly 36 px above each 150 px card.
+        # A 42 px allowance leaves a small visual gap between adjacent rows.
+        slot = card_height + round(42 * self.scale)
         count = len(spread.positions)
 
         if spread.layout == "row":
@@ -1112,7 +1187,7 @@ class TarotApp:
             )
             return coordinates, slot * 3
         if spread.layout == "horseshoe":
-            x_positions = (0.06, 0.20, 0.35, 0.50, 0.65, 0.80, 0.94)
+            x_positions = (0.07, 0.215, 0.357, 0.50, 0.643, 0.785, 0.93)
             y_positions = tuple(
                 round(value * self.scale) for value in (68, 34, 0, 0, 0, 34, 68)
             )
@@ -1153,29 +1228,28 @@ class TarotApp:
             )
             return coordinates, 4 * slot
         if spread.layout == "chakra":
-            x_positions = (0.06, 0.20, 0.35, 0.50, 0.65, 0.80, 0.94)
+            x_positions = (0.07, 0.215, 0.357, 0.50, 0.643, 0.785, 0.93)
             y_positions = tuple(
                 round(value * self.scale) for value in (42, 27, 13, 0, 13, 27, 42)
             )
             return tuple(zip(x_positions, y_positions, strict=True)), slot + y_positions[0]
         if spread.layout == "compass":
-            center_y = slot
             coordinates = (
-                (0.50, center_y),
+                (0.50, slot),
                 (0.50, 0),
-                (0.75, round(slot * 0.30)),
-                (0.84, center_y),
-                (0.75, round(slot * 1.70)),
+                (0.78, 0),
+                (0.84, slot),
+                (0.78, slot * 2),
                 (0.50, slot * 2),
-                (0.25, round(slot * 1.70)),
-                (0.16, center_y),
-                (0.25, round(slot * 0.30)),
+                (0.22, slot * 2),
+                (0.16, slot),
+                (0.22, 0),
             )
             return coordinates, 3 * slot
         if spread.layout == "celtic_cross":
             # The right-hand staff needs four complete label/card rows. Its
             # former three-quarter-slot offsets caused two-line position labels
-            # to collide after the card artwork was doubled in size.
+            # to collide with the uniformly sized card artwork.
             celtic_slot = card_height + round(42 * self.scale)
             coordinates = (
                 (0.28, celtic_slot),
@@ -1205,8 +1279,8 @@ class TarotApp:
             )
             return coordinates, slot * 4
         if spread.layout == "wheel":
-            center_y = slot * 1.10
-            radius_y = slot * 0.95
+            radius_y = slot * 2.10
+            center_y = radius_y
             coordinates = tuple(
                 (
                     0.50 + 0.42 * math.cos(math.radians(-90 + index * 30)),
@@ -1214,7 +1288,7 @@ class TarotApp:
                 )
                 for index in range(12)
             )
-            return coordinates, round(slot * 3.15)
+            return coordinates, round(radius_y * 2 + slot)
         raise ValueError(f"Unsupported spread layout: {spread.layout}")
 
     def _place_spread_column(
@@ -1232,7 +1306,7 @@ class TarotApp:
         column.pack(
             side="left" if len(spread.positions) > 1 else "top",
             expand=len(spread.positions) > 1,
-            padx=round((5 if len(spread.positions) <= 3 else 2) * self.scale),
+            padx=round((5 if len(spread.positions) <= 3 else 0) * self.scale),
         )
 
     def _show_spread_preview(self, spread: SpreadDefinition) -> None:
@@ -1240,8 +1314,7 @@ class TarotApp:
         self._clear_card_art()
         try:
             back = tk.PhotoImage(file=str(self._art_directory / "card-back.png"))
-            if spread.image_divisor != 0:
-                back = self._resize_card_image(back, spread)
+            back = self._resize_card_image(back)
         except tk.TclError:
             ttk.Label(
                 self.art_frame,
@@ -1251,7 +1324,7 @@ class TarotApp:
             return
 
         self._card_images.append(back)
-        card_height = self._display_card_height(spread, preview=True)
+        card_height = CARD_DISPLAY_HEIGHT
         layout = self._create_spread_layout(spread, card_height)
         count = len(spread.positions)
         for index, position in enumerate(spread.positions):
@@ -1283,7 +1356,7 @@ class TarotApp:
         """Render every card in the spread's original spatial arrangement."""
         self._clear_card_art()
         compact = len(results) > 1
-        card_height = self._display_card_height(spread)
+        card_height = CARD_DISPLAY_HEIGHT
         layout = self._create_spread_layout(spread, card_height)
         for index, result in enumerate(results):
             column = tk.Frame(layout, background=PANEL_ALT)
@@ -1299,7 +1372,7 @@ class TarotApp:
                     height=2 if spread.layout != "row" or len(results) > 3 else 1,
                 ).pack(pady=(0, round(4 * self.scale)))
             try:
-                image = self._load_card_image(result, spread=spread)
+                image = self._load_card_image(result)
             except tk.TclError:
                 card_label = tk.Label(
                     column,
@@ -1334,12 +1407,12 @@ class TarotApp:
                 ).pack(pady=(round(4 * self.scale), 0))
             self._place_spread_column(column, index, spread, card_height)
 
-    def _show_enlarged_card_art(
+    def _show_card_detail_art(
         self,
         results: tuple[ReadingResult, ...],
         spread: SpreadDefinition,
     ) -> None:
-        """Replace the spread temporarily with a large view of one card."""
+        """Replace the spread temporarily with a same-size card detail view."""
         self._clear_card_art()
         index = max(0, min(self._active_card_index, len(results) - 1))
         result = results[index]
@@ -1369,7 +1442,7 @@ class TarotApp:
         previous_button.grid(row=1, column=0, padx=(0, round(14 * self.scale)))
 
         try:
-            image = self._load_card_image(result, spread=spread, focused=True)
+            image = self._load_card_image(result)
         except tk.TclError:
             card_label = tk.Label(
                 detail,
@@ -1417,7 +1490,7 @@ class TarotApp:
         index = max(0, min(self._active_card_index, len(results) - 1))
         self._active_card_index = index
         result = results[index]
-        self._show_enlarged_card_art(results, spread)
+        self._show_card_detail_art(results, spread)
         self.card_name_label.configure(text=result.card.name.upper())
         self.orientation_label.configure(
             text=("REVERSED" if result.reversed else "UPRIGHT")
@@ -1439,7 +1512,7 @@ class TarotApp:
         self._active_card_index = index
         self._show_active_card(self._result, self._result_spread, speak=True)
         self.status_label.configure(
-            text=f"CARD {index + 1} OF {len(self._result)} — ENLARGED",
+            text=f"CARD {index + 1} OF {len(self._result)} — DETAILS",
             foreground=GREEN,
         )
 
@@ -1490,7 +1563,7 @@ class TarotApp:
             self.status_label.configure(
                 text=(
                     f"SIGNAL HELD — {self._last_sample_count:02d} SEEDS FUSED  ·  "
-                    "SELECT A CARD TO ENLARGE"
+                    "SELECT A CARD TO VIEW DETAILS"
                 ),
                 foreground=GREEN,
             )
@@ -1524,7 +1597,7 @@ class TarotApp:
         compact = len(results) > 1
         try:
             back = tk.PhotoImage(file=str(self._art_directory / "card-back.png"))
-            back = self._resize_card_image(back, spread)
+            back = self._resize_card_image(back)
             self._card_images.append(back)
             self._deal_back_image = back
             layout = self._create_spread_layout(spread, back.height())
@@ -1560,7 +1633,7 @@ class TarotApp:
                 )
                 card_label.place_forget()
 
-                face = self._load_card_image(result, spread=spread)
+                face = self._load_card_image(result)
                 orientation_label = tk.Label(
                     column,
                     text="" if compact else " ",
@@ -1795,7 +1868,7 @@ class TarotApp:
                 text=(
                     f"SIGNAL HELD — {self._last_sample_count:02d} SEEDS FUSED  ·  "
                     + (
-                        "SELECT A CARD, DRAW AGAIN, OR RETUNE"
+                        "SELECT A CARD FOR DETAILS, DRAW AGAIN, OR RETUNE"
                         if len(results) > 1
                         else "DRAW AGAIN OR RETUNE"
                     )
@@ -1823,7 +1896,7 @@ class TarotApp:
             return
 
         self.card_name_label.configure(text=spread.name.upper())
-        self.orientation_label.configure(text="SELECT A CARD TO ENLARGE")
+        self.orientation_label.configure(text="SELECT A CARD TO VIEW DETAILS")
         self.keywords_label.configure(
             text=f"{len(results)} CARDS  ·  FULL SPREAD READING"
         )

@@ -13,7 +13,7 @@ entirely local.
 
 ## Run it
 
-For the standalone Windows release, download and run `Singnal Tarot 0.2.exe`.
+For the standalone Windows release, download and run `Signal Tarot 0.7.exe`.
 It contains the Python runtime, deck data, card thumbnails, and local speech
 helper, so no installation or network connection is required. Release builds
 use a trailing version number in the filename, incremented with every update.
@@ -31,17 +31,21 @@ daily prompts; relationship, career, financial, creative, healing, shadow-work,
 and decision readings; plus traditional layouts such as the Horseshoe, Celtic
 Cross, Tree of Life, Year Ahead, and Zodiac Wheel. Spatial spreads are dealt in
 their own cross, arc, branch, mirror, pyramid, grid, compass, tree, or wheel
-arrangements rather than flattened into a row. Multi-card readings present
-each card's theme, orientation, and meaning under its named position. Click any
-card in the spread to enlarge it; use the Left and Right arrow keys to inspect
-adjacent cards, then select `VIEW FULL SPREAD` or press Escape to return.
+arrangements rather than flattened into a row. Selecting a spread displays a
+concise description of its purpose above the card layout. Multi-card readings present
+each card's theme, orientation, and meaning under its named position. Every card
+uses the same 200 × 300 display size in every spread and detail view. The few
+layouts that remain wider than the card area use compact spacing and a
+horizontal scrollbar. Click any card in the spread to inspect it; use the Left
+and Right arrow keys to inspect adjacent cards, then select `VIEW FULL SPREAD`
+or press Escape to return.
 Cards do not repeat during a session. `RESET DECK`
 returns all cards to the deck and creates a new session sigil.
 
 Single-card readings display one illustrated face. Multi-card readings display
-their named positions together, automatically scaling the artwork for larger
-patterns. A selected card opens at the larger single-card size. Reversed cards
-are shown upside-down as well as labeled, while the resting screen shows the
+their named positions together using the same card dimensions. A selected card
+opens in a focused detail view without changing its size. Reversed cards are
+shown upside-down as well as labeled, while the resting screen shows the
 non-directional deck back. After each measurement, the selected cards are
 dealt face down from the top of the window and revealed one at a time before
 the interpretation appears. Full-resolution masters live in
